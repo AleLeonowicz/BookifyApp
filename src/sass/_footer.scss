@@ -22,10 +22,26 @@
 }
 
 .footer-main__signature {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-main__signature h2,
+.footer-main__signature p {
   text-align: center;
   font-family: inherit;
   font-size: 1.5em;
   font-weight: 400;
+}
+
+.social-links__github,
+.social-links__linkedin {
+  text-decoration: none;
+  color: inherit;
+}
+
+.social-links__github {
+  margin-right: 10px;
 }
 
 .social-icons__git,
