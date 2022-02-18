@@ -1,0 +1,30 @@
+{
+  "name": "bookifyapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AleLeonowicz/BookifyApp.git"
+  },
+  "author": "Aleksandra Leonowicz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AleLeonowicz/BookifyApp/issues"
+  },
+  "homepage": "https://github.com/AleLeonowicz/BookifyApp#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.2.1",
+    "parcel": "^2.2.1",
+    "sass": "^1.49.7"
+  },
+  "dependencies": {
+    "core-js": "^3.21.0",
+    "regenerator-runtime": "^0.13.9"
+  }
+}
