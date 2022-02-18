@@ -1,0 +1,42 @@
+.footer-main {
+  background-color: $color-dark-brown;
+  height: 100px;
+  display: flex;
+}
+
+.footer-bottom {
+  background-color: $color-dark-grey;
+  height: 60px;
+}
+
+.footer-main__container {
+  width: 1400px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-main__left-container {
+  width: 87.56px;
+}
+
+.footer-main__signature {
+  text-align: center;
+  font-family: inherit;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.social-icons__git,
+.social-icons__linkedin {
+  height: 35px;
+  width: auto;
+  filter: invert(99%) sepia(20%) saturate(140%) hue-rotate(356deg)
+    brightness(99%) contrast(97%);
+  cursor: pointer;
+}
+
+.social-icons__git {
+  margin-right: 15px;
+}

@@ -1,0 +1,27 @@
+.nav {
+  width: 1400px;
+  height: 170px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.nav__logo {
+  display: block;
+  height: 70px;
+  cursor: pointer;
+}
+
+.nav__heart,
+.nav__user {
+  height: 35px;
+  width: auto;
+  filter: invert(65%) sepia(83%) saturate(6267%) hue-rotate(227deg)
+    brightness(100%) contrast(104%);
+  cursor: pointer;
+}
+
+.nav__heart {
+  margin-right: 25px;
+}

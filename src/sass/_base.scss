@@ -6,6 +6,7 @@ $color-light-brown: #d3cabd;
 
 $color-dark-grey: #1a1d1f;
 $color-dark-blue: #3f3d56;
+$color-white: #ffffff;
 
 $bp-large: 78.15em; // 1250px
 $bp-medium: 61.25em; // 980px
@@ -15,4 +16,30 @@ $bp-smallest: 31.25em; // 500px
 * {
   margin: 0;
   padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: $color-white;
+  background-color: $color-beige;
+  background-size: cover;
+  background-repeat: no-repeat;
+  //   min-height: calc(100vh - 2 * 4vw);
 }

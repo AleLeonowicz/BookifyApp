@@ -1,0 +1,41 @@
+.header {
+  grid-area: head;
+  background-color: $color-dark-grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+
+.header__container {
+  width: 1400px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header__btn-login {
+  //   min-height: 30px;
+  //   min-width: 100px;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: 2em;
+  margin-right: 30px;
+  font-weight: 400;
+}
+
+.header__btn-signup {
+  min-height: 30px;
+  min-width: 100px;
+  background-color: $color-primary;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 2em;
+  font-weight: 400;
+}
