@@ -1,5 +1,5 @@
 .nav {
-  width: 1400px;
+  width: 1300px;
   height: 170px;
   align-items: center;
   display: flex;
@@ -15,7 +15,7 @@
 
 .nav__search {
   background-color: $color-white;
-  width: 735px;
+  width: 600px;
   height: 45px;
   border-radius: 15px;
   border-style: solid;
@@ -38,7 +38,7 @@
 }
 
 .search__field {
-  width: 735px;
+  width: 600px;
   height: 45px;
   border: none;
   background: none;
