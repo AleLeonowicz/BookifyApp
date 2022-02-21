@@ -33,12 +33,14 @@
 }
 
 .footer-main__left-container {
-  width: 87.56px;
+  width: 15.665%;
+  display: flex;
 }
 
 .footer-main__signature {
   display: flex;
   flex-direction: column;
+  width: 66.66%;
 }
 
 .footer-main__signature h2,
@@ -49,6 +51,11 @@
   font-weight: 400;
 }
 
+.footer-main__social-icons {
+  width: 15.665%;
+  display: flex;
+  justify-content: flex-end;
+}
 .social-links__github,
 .social-links__linkedin {
   text-decoration: none;
@@ -70,4 +77,66 @@
 
 .social-icons__git {
   margin-right: 15px;
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-medium) and (max-width: $bp-large) {
+  .footer-main__container {
+    width: 880px;
+  }
+
+  .container__standing-illu {
+    width: 850px;
+  }
+
+  .standing-illu {
+    height: 210px;
+    bottom: 210px;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-small) and (max-width: $bp-medium) {
+  .footer-main__container {
+    width: 520px;
+  }
+
+  .container__standing-illu {
+    display: none;
+  }
+
+  .standing-illu {
+    display: none;
+  }
+
+  .social-icons__git,
+  .social-icons__linkedin {
+    display: none;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-smallest) and (max-width: $bp-small) {
+  .footer-main__container {
+    width: 380px;
+  }
+
+  .container__standing-illu {
+    display: none;
+  }
+
+  .standing-illu {
+    display: none;
+  }
+
+  .social-icons__git,
+  .social-icons__linkedin {
+    display: none;
+  }
 }
