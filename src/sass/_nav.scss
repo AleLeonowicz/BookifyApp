@@ -3,14 +3,32 @@
   height: 170px;
   align-items: center;
   display: flex;
-  justify-content: space-between;
   margin: auto;
+}
+
+.nav__container-logo {
+  width: 16.665%;
+  display: flex;
+  justify-content: left;
+}
+
+.nav__container-form {
+  width: 66.66%;
+  display: flex;
+  justify-content: center;
+}
+
+.nav__container-icons {
+  width: 16.665%;
+  display: flex;
+  justify-content: right;
 }
 
 .nav__logo {
   display: block;
   height: 70px;
   cursor: pointer;
+  justify-content: left;
 }
 
 .nav__search {
@@ -60,11 +78,7 @@
 .nav__btn-search {
   height: 45px;
   width: 110px;
-  border-radius: 15px;
   background-color: $color-primary;
-  border: none;
-  font-family: inherit;
-  color: $color-white;
   font-size: 2em;
   font-weight: 400;
   transition: all 0.2s;
@@ -75,7 +89,7 @@
 }
 
 .nav__heart,
-.nav__user {
+.nav__glasses {
   height: 35px;
   width: auto;
   filter: invert(65%) sepia(83%) saturate(6267%) hue-rotate(227deg)
@@ -83,6 +97,6 @@
   cursor: pointer;
 }
 
-.nav__heart {
-  margin-right: 25px;
+.nav__glasses {
+  margin-right: 10px;
 }

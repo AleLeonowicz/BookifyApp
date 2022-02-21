@@ -17,27 +17,41 @@
   <body>
     <header class="header">
       <div class="header__container">
-        <button class="header__btn-login">Log in</button>
-        <button class="header__btn-signup">Sign up</button>
+        <button class="btn header__btn-login">Log in</button>
+        <button class="btn header__btn-signup">Sign up</button>
       </div>
     </header>
     <div class="nav">
-      <img class="nav__logo" alt="Logo" src="src/img/logo.png" />
-      <form class="nav__search">
-        <input
-          type="text"
-          class="search__field"
-          placeholder="Type in the title, author or ISBN number..."
-        />
-        <button class="nav__btn-search">Go!</button>
-      </form>
+      <div class="nav__container-logo">
+        <img class="nav__logo" alt="Logo" src="src/img/logo.png" />
+      </div>
+      <div class="nav__container-form">
+        <form class="nav__search">
+          <input
+            type="text"
+            class="search__field"
+            placeholder="Type in the title or author..."
+          />
+          <button class="btn nav__btn-search">Go!</button>
+        </form>
+      </div>
       <div class="nav__container-icons">
-        <img class="nav__heart" alt="Favourites" src="src/img/heart.svg" />
-        <img class="nav__user" alt="User" src="src/img/user.svg" />
+        <img
+          class="nav__glasses"
+          alt="Favourites"
+          src="src/img/eyeglasses.svg"
+        />
+        <img class="nav__heart" alt="User" src="src/img/heart.svg" />
       </div>
     </div>
     <img class="sitting-illu" src="src/img/undraw_reading_re_29f8.svg" />
-    <div class="results-container"></div>
+    <div class="results-container">
+      <!-- <div class="spinner">
+          <svg>
+            <use href="src/img/icons.svg#icon-loader"></use>
+          </svg>
+        </div> -->
+    </div>
     <div class="illustration-bottom">
       <img class="standing-illu" src="src/img/undraw_loving_it_re_jfh4.svg" />
     </div>
