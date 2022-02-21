@@ -1,12 +1,16 @@
-.illustration-bottom {
+.container__standing-illu {
   height: 0px;
+  justify-content: flex-start;
+  height: 0px;
+  display: flex;
+  width: 1260px;
+  margin: auto;
 }
 
 .standing-illu {
   height: 270px;
   position: relative;
-  bottom: 170px;
-  left: 370px;
+  bottom: 270px;
 }
 
 .footer-main {

@@ -1,8 +1,16 @@
+.container__sitting-illu {
+  height: 0px;
+  justify-content: flex-end;
+  height: 0px;
+  display: flex;
+  width: 1040px;
+  margin: auto;
+}
+
 .sitting-illu {
   height: 160px;
-  position: absolute;
-  top: 102px;
-  right: 470px;
+  top: -128px;
+  position: relative;
 }
 
 .results-container {
