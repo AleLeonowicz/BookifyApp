@@ -145,10 +145,6 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
-  .footer-main__container {
-    width: 280px;
-  }
-
   .container__standing-illu {
     display: none;
   }
@@ -160,5 +156,23 @@
   .social-icons__git,
   .social-icons__linkedin {
     display: none;
+  }
+
+  .footer-main__signature {
+    width: 280px;
+  }
+
+  .footer-main__signature h2,
+  .footer-main__signature p {
+    font-size: 1em;
+    font-weight: 200;
+  }
+
+  .footer-main {
+    height: 40px;
+  }
+
+  .footer-bottom {
+    height: 15px;
   }
 }

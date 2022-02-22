@@ -17,7 +17,6 @@
   display: none;
   filter: invert(100%) sepia(0%) saturate(7465%) hue-rotate(66deg)
     brightness(101%) contrast(101%);
-  height: 30px;
 }
 
 .header__btn-login {
@@ -75,6 +74,7 @@
 
   .header__menu {
     display: block;
+    height: 30px;
   }
 
   .header__btn-login,
@@ -87,12 +87,17 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
+  .header {
+    height: 30px;
+  }
+
   .header__container {
     width: 280px;
   }
 
   .header__menu {
     display: block;
+    height: 25px;
   }
 
   .header__btn-login,
