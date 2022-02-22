@@ -50,12 +50,17 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-small) and (max-width: $bp-medium) {
+  .header {
+    height: 45px;
+  }
+
   .header__container {
     width: 520px;
   }
 
   .header__menu {
     display: block;
+    height: 35px;
   }
 
   .header__btn-login,
@@ -68,6 +73,10 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
+  .header {
+    height: 45px;
+  }
+
   .header__container {
     width: 380px;
   }
@@ -88,7 +97,7 @@
 
 @media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
   .header {
-    height: 30px;
+    height: 35px;
   }
 
   .header__container {

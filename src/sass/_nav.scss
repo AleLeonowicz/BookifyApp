@@ -180,7 +180,7 @@
 
 @media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
   .nav {
-    height: 150px;
+    height: 140px;
   }
 
   .nav__container {
@@ -193,6 +193,13 @@
   .nav__search,
   .search__field {
     width: 380px;
+    height: 35px;
+  }
+
+  .nav__btn-search {
+    height: 35px;
+    width: 90px;
+    font-size: 1.8em;
   }
 
   .nav__heart,

@@ -21,7 +21,7 @@
 
 .footer-bottom {
   background-color: $color-dark-grey;
-  height: 60px;
+  height: 35px;
 }
 
 .footer-main__container {
@@ -83,10 +83,6 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-medium) and (max-width: $bp-large) {
-  .footer-main__container {
-    width: 880px;
-  }
-
   .container__standing-illu {
     width: 850px;
   }
@@ -95,16 +91,20 @@
     height: 210px;
     bottom: 110px;
   }
+
+  .footer-bottom {
+    height: 30px;
+  }
+
+  .footer-main__container {
+    width: 880px;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-small) and (max-width: $bp-medium) {
-  .footer-main__container {
-    width: 520px;
-  }
-
   .container__standing-illu {
     display: none;
   }
@@ -113,9 +113,41 @@
     display: none;
   }
 
+  .footer-main {
+    height: 70px;
+  }
+
+  .footer-bottom {
+    height: 30px;
+  }
+
+  .footer-main__container {
+    width: 520px;
+    flex-wrap: wrap;
+  }
+
+  .footer-main__signature {
+    width: 100%;
+  }
+
+  .footer-main__social-icons {
+    width: 100%;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
   .social-icons__git,
   .social-icons__linkedin {
+    height: 25px;
+  }
+
+  .footer-main__signature p {
     display: none;
+  }
+
+  .footer-main__signature h2 {
+    font-size: 1.6em;
+    font-weight: 300;
   }
 }
 
@@ -123,10 +155,6 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
-  .footer-main__container {
-    width: 380px;
-  }
-
   .container__standing-illu {
     display: none;
   }
@@ -135,9 +163,41 @@
     display: none;
   }
 
+  .footer-main {
+    height: 60px;
+  }
+
+  .footer-bottom {
+    height: 20px;
+  }
+
+  .footer-main__container {
+    width: 380px;
+    flex-wrap: wrap;
+  }
+
+  .footer-main__signature {
+    width: 100%;
+  }
+
+  .footer-main__social-icons {
+    width: 100%;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
   .social-icons__git,
   .social-icons__linkedin {
+    height: 25px;
+  }
+
+  .footer-main__signature p {
     display: none;
+  }
+
+  .footer-main__signature h2 {
+    font-size: 1.4em;
+    font-weight: 300;
   }
 }
 
@@ -152,27 +212,40 @@
   .standing-illu {
     display: none;
   }
-
-  .social-icons__git,
-  .social-icons__linkedin {
-    display: none;
-  }
-
-  .footer-main__signature {
-    width: 280px;
-  }
-
-  .footer-main__signature h2,
-  .footer-main__signature p {
-    font-size: 1em;
-    font-weight: 200;
-  }
-
   .footer-main {
-    height: 40px;
+    height: 50px;
   }
 
   .footer-bottom {
     height: 15px;
+  }
+
+  .footer-main__container {
+    width: 280px;
+    flex-wrap: wrap;
+  }
+
+  .footer-main__signature {
+    width: 100%;
+  }
+
+  .footer-main__social-icons {
+    width: 100%;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .social-icons__git,
+  .social-icons__linkedin {
+    height: 20px;
+  }
+
+  .footer-main__signature p {
+    display: none;
+  }
+
+  .footer-main__signature h2 {
+    font-size: 1em;
+    font-weight: 300;
   }
 }

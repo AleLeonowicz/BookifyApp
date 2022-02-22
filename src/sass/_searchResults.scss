@@ -15,11 +15,11 @@
 
 .results-container {
   width: 1300px;
-  height: calc(100vh - 470px);
+  min-height: calc(100vh - 425px);
   margin: auto;
   background-color: $color-light-brown;
   border-radius: 40px;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -28,8 +28,8 @@
 @media screen and (min-width: $bp-medium) and (max-width: $bp-large) {
   .results-container {
     width: 880px;
-    height: calc(100vh - 462px);
-    margin-bottom: 72px;
+    min-height: calc(100vh - 422px);
+    margin-bottom: 62px;
   }
 
   .container__sitting-illu {
@@ -48,8 +48,8 @@
 @media screen and (min-width: $bp-small) and (max-width: $bp-medium) {
   .results-container {
     width: 520px;
-    height: calc(100vh - 481px);
-    margin-bottom: 61px;
+    min-height: calc(100vh - 380px);
+    margin-bottom: 35px;
   }
 
   .container__sitting-illu {
@@ -67,8 +67,9 @@
 @media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
   .results-container {
     width: 380px;
-    height: calc(100vh - 407px);
-    margin-bottom: 37px;
+    min-height: calc(100vh - 290px);
+    margin-bottom: 25px;
+    border-radius: 30px;
   }
 
   .container__sitting-illu {
@@ -86,8 +87,9 @@
 @media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
   .results-container {
     width: 280px;
-    height: calc(100vh - 225px);
+    min-height: calc(100vh - 240px);
     margin-bottom: 20px;
+    border-radius: 20px;
   }
 
   .container__sitting-illu {
