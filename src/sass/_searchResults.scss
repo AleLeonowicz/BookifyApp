@@ -22,6 +22,52 @@
   margin-bottom: 60px;
 }
 
+.results-container__box {
+  margin: auto;
+  padding-top: 70px;
+  padding-bottom: 35px;
+  padding-left: 90px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.search-result {
+  background-color: $color-beige;
+  width: 196px;
+  height: 279px;
+  margin-right: 35px;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.search-result__overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: $color-primary;
+  display: flex;
+  align-items: center;
+}
+
+.search-result:hover .search-result__overlay {
+  opacity: 0.6;
+}
+
+.search-result__text {
+  color: $color-white;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 2em;
+}
+
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
