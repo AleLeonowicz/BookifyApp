@@ -28,6 +28,7 @@
 @media screen and (min-width: $bp-medium) and (max-width: $bp-large) {
   .results-container {
     width: 880px;
+    height: calc(100vh - 390px);
   }
 
   .container__sitting-illu {
@@ -46,6 +47,7 @@
 @media screen and (min-width: $bp-small) and (max-width: $bp-medium) {
   .results-container {
     width: 520px;
+    height: calc(100vh - 420px);
   }
 
   .container__sitting-illu {
