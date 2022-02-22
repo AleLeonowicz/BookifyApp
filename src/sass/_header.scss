@@ -68,9 +68,27 @@
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
-@media screen and (min-width: $bp-smallest) and (max-width: $bp-small) {
+@media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
   .header__container {
     width: 380px;
+  }
+
+  .header__menu {
+    display: block;
+  }
+
+  .header__btn-login,
+  .header__btn-signup {
+    display: none;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
+  .header__container {
+    width: 280px;
   }
 
   .header__menu {

@@ -122,9 +122,31 @@
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
-@media screen and (min-width: $bp-smallest) and (max-width: $bp-small) {
+@media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
   .footer-main__container {
     width: 380px;
+  }
+
+  .container__standing-illu {
+    display: none;
+  }
+
+  .standing-illu {
+    display: none;
+  }
+
+  .social-icons__git,
+  .social-icons__linkedin {
+    display: none;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
+  .footer-main__container {
+    width: 280px;
   }
 
   .container__standing-illu {

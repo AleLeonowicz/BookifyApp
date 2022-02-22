@@ -176,7 +176,7 @@
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 
-@media screen and (min-width: $bp-smallest) and (max-width: $bp-small) {
+@media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
   .nav {
     height: 150px;
   }
@@ -195,6 +195,53 @@
   .nav__heart,
   .nav__glasses {
     height: 35px;
+  }
+
+  .nav__container-logo {
+    order: 1;
+    width: 50%;
+    height: 80px;
+  }
+
+  .nav__container-form {
+    order: 3;
+    width: 100%;
+    height: 70px;
+    align-items: flex-start;
+  }
+
+  .nav__container-icons {
+    order: 2;
+    width: 50%;
+    height: 80px;
+  }
+  .nav__logo {
+    height: 50px;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
+  .nav {
+    height: 150px;
+  }
+
+  .nav__container {
+    width: 280px;
+    flex-wrap: wrap;
+    // padding-top: 15px;
+    // padding-bottom: 15px;
+  }
+
+  .nav__search {
+    width: 280px;
+  }
+
+  .nav__heart,
+  .nav__glasses {
+    height: 30px;
   }
 
   .nav__container-logo {
