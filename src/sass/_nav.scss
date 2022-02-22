@@ -1,27 +1,35 @@
 .nav {
+  height: 170px;
+  display: flex;
+}
+
+.nav__container {
   width: 1300px;
-  min-height: 170px;
   align-items: center;
   display: flex;
   margin: auto;
+  justify-content: space-between;
 }
 
 .nav__container-logo {
   width: 16.665%;
   display: flex;
-  justify-content: left;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .nav__container-form {
   width: 66.66%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .nav__container-icons {
   width: 16.665%;
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .nav__logo {
@@ -105,7 +113,7 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-medium) and (max-width: $bp-large) {
-  .nav {
+  .nav__container {
     width: 880px;
   }
 
@@ -124,11 +132,13 @@
 
 @media screen and (min-width: $bp-small) and (max-width: $bp-medium) {
   .nav {
+    height: 200px;
+  }
+  .nav__container {
     width: 520px;
     flex-wrap: wrap;
-    height: 200px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    // padding-top: 20px;
+    // padding-bottom: 20px;
   }
 
   .nav__search {
@@ -143,16 +153,20 @@
   .nav__container-logo {
     order: 1;
     width: 50%;
+    height: 120px;
   }
 
   .nav__container-form {
     order: 3;
     width: 100%;
+    height: 80px;
+    align-items: flex-start;
   }
 
   .nav__container-icons {
     order: 2;
     width: 50%;
+    height: 120px;
   }
   .nav__logo {
     height: 60px;
@@ -164,11 +178,14 @@
 
 @media screen and (min-width: $bp-smallest) and (max-width: $bp-small) {
   .nav {
+    height: 150px;
+  }
+
+  .nav__container {
     width: 380px;
     flex-wrap: wrap;
-    height: 140px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    // padding-top: 15px;
+    // padding-bottom: 15px;
   }
 
   .nav__search {
@@ -183,16 +200,20 @@
   .nav__container-logo {
     order: 1;
     width: 50%;
+    height: 80px;
   }
 
   .nav__container-form {
     order: 3;
     width: 100%;
+    height: 70px;
+    align-items: flex-start;
   }
 
   .nav__container-icons {
     order: 2;
     width: 50%;
+    height: 80px;
   }
   .nav__logo {
     height: 50px;
