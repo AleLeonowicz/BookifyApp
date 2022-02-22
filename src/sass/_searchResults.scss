@@ -15,11 +15,11 @@
 
 .results-container {
   width: 1300px;
-  min-height: 500px;
+  height: calc(100vh - 470px);
   margin: auto;
   background-color: $color-light-brown;
   border-radius: 40px;
-  margin-bottom: 110px;
+  margin-bottom: 80px;
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -28,7 +28,8 @@
 @media screen and (min-width: $bp-medium) and (max-width: $bp-large) {
   .results-container {
     width: 880px;
-    height: calc(100vh - 390px);
+    height: calc(100vh - 462px);
+    margin-bottom: 72px;
   }
 
   .container__sitting-illu {
@@ -47,7 +48,8 @@
 @media screen and (min-width: $bp-small) and (max-width: $bp-medium) {
   .results-container {
     width: 520px;
-    height: calc(100vh - 420px);
+    height: calc(100vh - 481px);
+    margin-bottom: 61px;
   }
 
   .container__sitting-illu {
@@ -65,6 +67,8 @@
 @media screen and (min-width: $bp-smallest) and (max-width: $bp-small) {
   .results-container {
     width: 380px;
+    height: calc(100vh - 427px);
+    margin-bottom: 37px;
   }
 
   .container__sitting-illu {
