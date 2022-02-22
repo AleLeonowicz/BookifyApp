@@ -51,7 +51,7 @@
   width: 100%;
   opacity: 0;
   transition: 0.5s ease;
-  background-color: $color-primary;
+  background-color: $color-dark-grey;
   display: flex;
   align-items: center;
 }
@@ -86,6 +86,29 @@
     height: 130px;
     top: -104px;
   }
+
+  .results-container__box {
+    margin: auto;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .search-result {
+    background-color: $color-beige;
+    width: 177.5px;
+    height: 250px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .search-result__text {
+    font-size: 1.8em;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -96,6 +119,7 @@
     width: 520px;
     min-height: calc(100vh - 380px);
     margin-bottom: 35px;
+    border-radius: 20px;
   }
 
   .container__sitting-illu {
@@ -104,6 +128,29 @@
 
   .sitting-illu {
     display: none;
+  }
+
+  .results-container__box {
+    margin: auto;
+    padding-top: 35px;
+    padding-bottom: 20px;
+    padding-left: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .search-result {
+    background-color: $color-beige;
+    width: 140px;
+    height: 198px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    position: relative;
+  }
+
+  .search-result__text {
+    font-size: 1.8em;
   }
 }
 
@@ -125,6 +172,29 @@
   .sitting-illu {
     display: none;
   }
+
+  .results-container__box {
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .search-result {
+    background-color: $color-beige;
+    width: 105.3px;
+    height: 150px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .search-result__text {
+    font-size: 1.3em;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -135,7 +205,7 @@
     width: 280px;
     min-height: calc(100vh - 240px);
     margin-bottom: 20px;
-    border-radius: 20px;
+    border-radius: 15px;
   }
 
   .container__sitting-illu {
@@ -144,5 +214,28 @@
 
   .sitting-illu {
     display: none;
+  }
+
+  .results-container__box {
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .search-result {
+    background-color: $color-beige;
+    width: 81.3px;
+    height: 115px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .search-result__text {
+    font-size: 1.1em;
   }
 }
