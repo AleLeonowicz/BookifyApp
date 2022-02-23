@@ -16,3 +16,7 @@ export const insertResult = function (result) {
 
   constants.resultsContainer.insertAdjacentHTML('beforeEnd', mockup);
 };
+
+export const clearResultsContainer = function () {
+  constants.resultsContainer.innerHTML = '';
+};

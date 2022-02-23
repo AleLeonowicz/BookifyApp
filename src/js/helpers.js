@@ -11,3 +11,14 @@ export const getJSON = async function (url) {
   const data = await response.json();
   return data;
 };
+
+export const getFilteredData = function (data) {
+  return data.filter(
+    item =>
+      item.volumeInfo &&
+      item.volumeInfo.imageLinks &&
+      item.volumeInfo.imageLinks.thumbnail &&
+      item.volumeInfo.title &&
+      item.volumeInfo.authors
+  );
+};

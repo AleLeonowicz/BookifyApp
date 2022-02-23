@@ -13,31 +13,15 @@ import 'regenerator-runtime/runtime';
 //////////////////////////////////////////////
 //////////////////////////////////////////////
 
-const clearResultsContainer = function () {
-  model.state.data = [];
-  constants.resultsContainer.innerHTML = '';
-};
-
-const getFilteredData = function (data) {
-  return data.filter(
-    item =>
-      item.volumeInfo &&
-      item.volumeInfo.imageLinks &&
-      item.volumeInfo.imageLinks.thumbnail &&
-      item.volumeInfo.title &&
-      item.volumeInfo.authors
-  );
-};
-
 constants.form.addEventListener('submit', async function (e) {
   e.preventDefault();
-  clearResultsContainer();
+  view.clearResultsContainer();
   const userInput = helpers.getQuery();
   const data = await helpers.getJSON(
     `https://www.googleapis.com/books/v1/volumes?q=${userInput}&langRestrict=en&maxResults=40`
   );
 
-  const filteredData = getFilteredData(data.items);
+  const filteredData = helpers.getFilteredData(data.items);
   console.log('filteredData', filteredData);
   model.setState(filteredData, 'data');
 
