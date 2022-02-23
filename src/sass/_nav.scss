@@ -69,17 +69,17 @@
   border: none;
   background: none;
   font-family: inherit;
-  //   color: $color-dark-grey;
   font-size: 1.8em;
   text-align: center;
   font-weight: 400;
+  color: $color-dark-blue;
 
   &:focus {
     outline: none;
   }
 
   &::placeholder {
-    color: $color-dark-blue;
+    color: $color-grey;
   }
 }
 
@@ -117,9 +117,16 @@
     width: 880px;
   }
 
-  .nav__search,
-  .search__field {
+  .nav__search {
     width: 450px;
+  }
+
+  .search__field {
+    width: 360px;
+  }
+
+  .nav__btn-search {
+    width: 90px;
   }
 
   .nav__heart,
@@ -142,9 +149,16 @@
     // padding-bottom: 20px;
   }
 
-  .nav__search,
-  .search__field {
+  .nav__search {
     width: 520px;
+  }
+
+  .search__field {
+    width: 430px;
+  }
+
+  .nav__btn-search {
+    width: 90px;
   }
 
   .nav__heart,
@@ -190,15 +204,18 @@
     // padding-bottom: 15px;
   }
 
-  .nav__search,
-  .search__field {
+  .nav__search {
     width: 380px;
     height: 35px;
   }
 
+  .search__field {
+    width: 310px;
+  }
+
   .nav__btn-search {
     height: 35px;
-    width: 90px;
+    width: 70px;
     font-size: 1.8em;
   }
 
