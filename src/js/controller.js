@@ -43,18 +43,22 @@ const insertResult = function (result) {
     />
     <div class="search-result__overlay">
       <div class="search-result__text">
-      "${result.volumeInfo.title}" by
+      "${result.volumeInfo.title}" by ${result.volumeInfo.authors}
       </div>
     </div>
   </div>`;
 
-  console.log('mockup', mockup);
-
   resultsContainer.insertAdjacentHTML('beforeEnd', mockup);
+};
+
+const clearResultsContainer = function () {
+  state.data = [];
+  resultsContainer.innerHTML = '';
 };
 
 form.addEventListener('submit', async function (e) {
   e.preventDefault();
+  clearResultsContainer();
   const userInput = getQuery().replaceAll(' ', '+');
   const data = await getJSON(
     `https://www.googleapis.com/books/v1/volumes?q=${userInput}&langRestrict=en&maxResults=40`
@@ -67,7 +71,8 @@ form.addEventListener('submit', async function (e) {
       item.volumeInfo &&
       item.volumeInfo.imageLinks &&
       item.volumeInfo.imageLinks.thumbnail &&
-      item.volumeInfo.title
+      item.volumeInfo.title &&
+      item.volumeInfo.authors
   );
 
   console.log('filteredData', filteredData);
