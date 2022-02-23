@@ -41,6 +41,12 @@
   position: relative;
 }
 
+.search-result__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .search-result__overlay {
   position: absolute;
   top: 0;
@@ -57,7 +63,7 @@
 }
 
 .search-result:hover .search-result__overlay {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .search-result__text {

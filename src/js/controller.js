@@ -3,9 +3,9 @@ import * as model from './model.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 //////////////////////////////////////////////
 //////////////////////////////////////////////
@@ -18,6 +18,9 @@ if (module.hot) {
 const searchField = document.querySelector('.search__field');
 const submitBtn = document.querySelector('.nav__btn-search');
 const form = document.querySelector('.nav__search');
+const resultsContainer = document.querySelector('.results-container__box');
+
+let state = {};
 
 const getQuery = function () {
   const query = searchField.value;
@@ -27,17 +30,51 @@ const getQuery = function () {
 
 const getJSON = async function (url) {
   const response = await fetch(url);
-  console.log('response', response);
   const data = await response.json();
   return data;
+};
+
+const insertResult = function (result) {
+  const mockup = `
+  <div class="search-result">
+    <img
+    class="search-result__img"
+    src="${result.volumeInfo.imageLinks.thumbnail}"
+    />
+    <div class="search-result__overlay">
+      <div class="search-result__text">
+      "${result.volumeInfo.title}" by
+      </div>
+    </div>
+  </div>`;
+
+  console.log('mockup', mockup);
+
+  resultsContainer.insertAdjacentHTML('beforeEnd', mockup);
 };
 
 form.addEventListener('submit', async function (e) {
   e.preventDefault();
   const userInput = getQuery().replaceAll(' ', '+');
-  console.log(userInput);
   const data = await getJSON(
     `https://www.googleapis.com/books/v1/volumes?q=${userInput}&langRestrict=en&maxResults=40`
   );
-  console.log('json data', data);
+
+  console.log('data.items', data.items);
+
+  const filteredData = data.items.filter(
+    item =>
+      item.volumeInfo &&
+      item.volumeInfo.imageLinks &&
+      item.volumeInfo.imageLinks.thumbnail &&
+      item.volumeInfo.title
+  );
+
+  console.log('filteredData', filteredData);
+  state.data = filteredData;
+  console.log('state.data', state.data);
+
+  state.data.forEach(item => {
+    insertResult(item);
+  });
 });
