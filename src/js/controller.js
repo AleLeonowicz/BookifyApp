@@ -9,18 +9,10 @@ import 'regenerator-runtime/runtime';
 
 //////////////////////////////////////////////
 //////////////////////////////////////////////
-/*
-1. Catch user's input
-2. Save it in state
-3. If 'GO' is clicked - fetch
-*/
-
 const searchField = document.querySelector('.search__field');
 const submitBtn = document.querySelector('.nav__btn-search');
 const form = document.querySelector('.nav__search');
 const resultsContainer = document.querySelector('.results-container__box');
-
-let state = {};
 
 const getQuery = function () {
   const query = searchField.value;
@@ -52,8 +44,23 @@ const insertResult = function (result) {
 };
 
 const clearResultsContainer = function () {
-  state.data = [];
+  model.state.data = [];
   resultsContainer.innerHTML = '';
+};
+
+const getFilteredData = function (data) {
+  return data.filter(
+    item =>
+      item.volumeInfo &&
+      item.volumeInfo.imageLinks &&
+      item.volumeInfo.imageLinks.thumbnail &&
+      item.volumeInfo.title &&
+      item.volumeInfo.authors
+  );
+};
+
+const setState = function (newState, key) {
+  model.state[key] = newState;
 };
 
 form.addEventListener('submit', async function (e) {
@@ -64,22 +71,17 @@ form.addEventListener('submit', async function (e) {
     `https://www.googleapis.com/books/v1/volumes?q=${userInput}&langRestrict=en&maxResults=40`
   );
 
-  console.log('data.items', data.items);
-
-  const filteredData = data.items.filter(
-    item =>
-      item.volumeInfo &&
-      item.volumeInfo.imageLinks &&
-      item.volumeInfo.imageLinks.thumbnail &&
-      item.volumeInfo.title &&
-      item.volumeInfo.authors
-  );
-
+  const filteredData = getFilteredData(data.items);
   console.log('filteredData', filteredData);
-  state.data = filteredData;
-  console.log('state.data', state.data);
+  setState(filteredData, 'data');
 
-  state.data.forEach(item => {
+  // model.state.data = filteredData;
+  // console.log('state.data', model.state.data);
+  console.log('model.state.data', model.state.data);
+  model.state.data.forEach(item => {
     insertResult(item);
   });
 });
+
+// zrob nowa unkcje getFiltered data ktora otrzymujje data jako arg i oddaje przefiltrowany array. uzyj
+// zrob nowa funkcje setState  kotra przymuje jako arg wartosc nowego stanu oraz drugi argument key, ktory mowi pod jakim kluczem zapisac te wartosc. funkcja nic nie zwaraca - undefined.
