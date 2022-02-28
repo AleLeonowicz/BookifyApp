@@ -32,6 +32,7 @@
   justify-content: flex-start;
 }
 
+////////////////////////////////////////////////////
 .result-details__container {
   width: 1200px;
   display: flex;
@@ -46,7 +47,6 @@
   margin-bottom: 25px;
 }
 
-////////////////////////////////////////////////////
 .result-details__description {
   width: 745px;
   height: 610px;
@@ -212,6 +212,93 @@
 
   .search-result__text {
     font-size: 1.8em;
+  }
+
+  /////////////////////////////////////////////////////////////////////
+
+  .result-details__container {
+    width: 800px;
+  }
+
+  .result-details__img {
+    width: 310px;
+    height: 437px;
+    margin-bottom: 20px;
+  }
+
+  .result-details__description {
+    width: 470px;
+    height: 437px;
+    margin-bottom: 20px;
+  }
+
+  .description__container {
+    margin: 10px;
+    min-height: 417px;
+    max-height: 417px;
+  }
+
+  .title__container__text {
+    font-size: 1.6em;
+    font-weight: 1000;
+    line-height: 1.4em;
+    // width: 370px;
+  }
+
+  .to-read__icon {
+    width: 35px;
+    margin-right: 10px;
+  }
+
+  .favourites__icon {
+    width: 35px;
+  }
+
+  .ratings__container {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .raitings__star-img {
+    width: 40px;
+  }
+
+  .raitings__raiting {
+    font-size: 3.2em;
+    font-weight: bold;
+    margin-left: 8px;
+    margin-top: 5px;
+  }
+
+  .raitings__number {
+    font-size: 1.4em;
+    margin-left: 8px;
+    // display: flex;
+    // flex-wrap: wrap;
+    // width: 12px;
+    line-height: 14px;
+    margin-top: 7px;
+  }
+
+  .additional-info {
+    font-size: 1.4em;
+    font-weight: 500;
+    width: 100%;
+    height: 70px;
+    line-height: 1.3em;
+  }
+
+  .summary-title {
+    color: $color-primary;
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+
+  .summary {
+    font-size: 1.4em;
+    line-height: 1.3em;
   }
 }
 
