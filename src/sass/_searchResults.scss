@@ -757,7 +757,7 @@
   }
 
   .description__container {
-    margin: 5px;
+    margin: 8px;
     min-height: 130px;
     max-height: 130px;
   }
@@ -807,7 +807,7 @@
 
   .to-read__icon {
     width: 15px;
-    margin-right: 10px;
+    margin-right: 5px;
     height: 15px;
   }
 
@@ -847,10 +847,10 @@
     // display: flex;
     // flex-wrap: wrap;
     // width: 12px;
-    line-height: 0.6em;
+    line-height: 0.8em;
     margin-top: 0px;
     display: flex;
-    margin-bottom: 3px;
+    margin-bottom: 0px;
     // align-self: center;
     // padding-top: 52px;
   }
@@ -863,7 +863,7 @@
     background-color: $color-beige;
     border-radius: 10px;
     margin-bottom: 6px;
-    padding: 5px;
+    padding: 8px;
   }
 
   .summary-title-2 {
@@ -875,7 +875,7 @@
   .summary-2 {
     color: $color-dark-blue;
     font-size: 0.9em;
-    line-height: 0.9em;
+    line-height: 1.1em;
     text-align: justify;
   }
 }
