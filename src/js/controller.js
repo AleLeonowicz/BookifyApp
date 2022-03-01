@@ -51,5 +51,5 @@ constants.resultListContainer.addEventListener('click', async function (e) {
     constants.resultDetailsContainer
   );
   view.clearContainer(constants.resultDetailsContainer);
-  view.insertResultsDetails();
+  view.insertResultsDetails(model.state.selectedResult);
 });
