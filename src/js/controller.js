@@ -31,11 +31,17 @@ constants.form.addEventListener('submit', async function (e) {
   });
 });
 
-constants.resultsContainer.addEventListener('click', function (e) {
+constants.resultsContainer.addEventListener('click', async function (e) {
   console.log(e.target);
   const searchResult = e.target.closest('.search-result');
   console.log(searchResult);
   if (!searchResult) return;
+
+  const link = searchResult.getAttribute('data-selfLink');
+  console.log(link);
+
+  const selectedResult = await helpers.getJSON(link);
+  console.log(selectedResult);
 
   view.insertResultsDetails();
 });

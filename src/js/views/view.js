@@ -2,7 +2,7 @@ import * as constants from '../constants.js';
 
 export const insertResult = function (result) {
   const mockup = `
-    <div class="search-result">
+    <div class="search-result" data-selfLink="${result.selfLink}">
       <img
       class="search-result__img"
       src="${result.volumeInfo.imageLinks.thumbnail}"
