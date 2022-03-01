@@ -22,34 +22,34 @@ constants.form.addEventListener('submit', async function (e) {
   );
 
   const filteredData = helpers.getFilteredData(data.items);
-  console.log('filteredData', filteredData);
+  // console.log('filteredData', filteredData);
   model.setState(filteredData, 'data');
 
-  console.log('model.state.data', model.state.data);
+  // console.log('model.state.data', model.state.data);
   model.state.data.forEach(item => {
     view.insertResult(item);
   });
 });
 
 constants.resultListContainer.addEventListener('click', async function (e) {
-  console.log(e.target);
+  // console.log(e.target);
   const searchResult = e.target.closest('.search-result');
-  console.log(searchResult);
+  // console.log(searchResult);
   if (!searchResult) return;
 
   const link = searchResult.getAttribute('data-selfLink');
-  console.log(link);
+  // console.log(link);
 
   const selectedResult = await helpers.getJSON(link);
-  console.log(selectedResult);
+  // console.log(selectedResult);
 
   model.setState(selectedResult, 'selectedResult');
-  console.log('model.state.selectedResult', model.state.selectedResult);
+  // console.log('model.state.selectedResult', model.state.selectedResult);
 
-  console.log(
-    'constants.resultDetailsContainer',
-    constants.resultDetailsContainer
-  );
+  // console.log(
+  //   'constants.resultDetailsContainer',
+  //   constants.resultDetailsContainer
+  // );
   view.clearContainer(constants.resultDetailsContainer);
   view.insertResultsDetails(model.state.selectedResult);
 });
