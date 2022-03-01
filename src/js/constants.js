@@ -4,3 +4,4 @@ export const resultsContainer = document.querySelector(
   '.results-container__box'
 );
 export const searchField = document.querySelector('.search__field');
+export const searchResult = document.querySelector('.search-result');

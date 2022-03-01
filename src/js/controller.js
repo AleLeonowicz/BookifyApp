@@ -30,3 +30,12 @@ constants.form.addEventListener('submit', async function (e) {
     view.insertResult(item);
   });
 });
+
+constants.resultsContainer.addEventListener('click', function (e) {
+  console.log(e.target);
+  const searchResult = e.target.closest('.search-result');
+  console.log(searchResult);
+  if (!searchResult) return;
+
+  view.insertResultsDetails();
+});
