@@ -15,7 +15,7 @@ import 'regenerator-runtime/runtime';
 
 constants.form.addEventListener('submit', async function (e) {
   e.preventDefault();
-  view.clearResultsContainer();
+  view.clearContainer(constants.resultListContainer);
   const userInput = helpers.getQuery();
   const data = await helpers.getJSON(
     `https://www.googleapis.com/books/v1/volumes?q=${userInput}&langRestrict=en&maxResults=40`
@@ -31,7 +31,7 @@ constants.form.addEventListener('submit', async function (e) {
   });
 });
 
-constants.resultsContainer.addEventListener('click', async function (e) {
+constants.resultListContainer.addEventListener('click', async function (e) {
   console.log(e.target);
   const searchResult = e.target.closest('.search-result');
   console.log(searchResult);
@@ -43,5 +43,13 @@ constants.resultsContainer.addEventListener('click', async function (e) {
   const selectedResult = await helpers.getJSON(link);
   console.log(selectedResult);
 
+  model.setState(selectedResult, 'selectedResult');
+  console.log('model.state.selectedResult', model.state.selectedResult);
+
+  console.log(
+    'constants.resultDetailsContainer',
+    constants.resultDetailsContainer
+  );
+  view.clearContainer(constants.resultDetailsContainer);
   view.insertResultsDetails();
 });

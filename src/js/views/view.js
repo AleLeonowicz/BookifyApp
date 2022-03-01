@@ -14,17 +14,18 @@ export const insertResult = function (result) {
       </div>
     </div>`;
 
-  constants.resultsContainer.insertAdjacentHTML('beforeEnd', mockup);
+  constants.resultListContainer.insertAdjacentHTML('beforeEnd', mockup);
 };
 
-export const clearResultsContainer = function () {
-  constants.resultsContainer.innerHTML = '';
+export const clearContainer = function (container) {
+  container.innerHTML = '';
 };
 
 export const insertResultsDetails = function () {
+  const selectedResult = model.state.selectedResult;
   const mockup = `
-  <div class="result-details__container">
-          <img
+  
+            <img
             class="result-details__img"
             src="https://m.media-amazon.com/images/I/71ykU-RQ0nL._AC_SL1000_.jpg"
           />
@@ -116,7 +117,7 @@ export const insertResultsDetails = function () {
               veniam, quis nostrum exercitationem ullam corporis suscipit
               laboriosam, nisi ut aliquid ex ea commodi consequatur?
             </div>
-          </div>`;
+            `;
 
-  constants.resultsContainer.insertAdjacentHTML('afterBegin', mockup);
+  constants.resultDetailsContainer.insertAdjacentHTML('afterBegin', mockup);
 };
