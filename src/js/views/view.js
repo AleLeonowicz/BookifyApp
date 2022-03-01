@@ -1,5 +1,9 @@
 import * as constants from '../constants.js';
 
+export const scrollIntoView = function (id) {
+  document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+};
+
 export const insertResult = function (result) {
   const mockup = `
     <div class="search-result" data-selfLink="${result.selfLink}">
@@ -32,7 +36,9 @@ export const insertResultsDetails = function (selectedResult) {
             <div class="description__container">
               <div class="title__container">
                 <div class="title__container__text">
-                  Title: “${selectedResult.volumeInfo.title}”<br />Author: ${selectedResult.volumeInfo.authors}
+                  Title: “${selectedResult.volumeInfo.title}”<br />Author: ${
+    selectedResult.volumeInfo.authors
+  }
                 </div>
                 <div class="title__container__icons">
                   <img
@@ -53,11 +59,25 @@ export const insertResultsDetails = function (selectedResult) {
                   alt="star"
                   src="src/img/star_3.png"
                 />
-                <div class="raitings__raiting">${selectedResult.volumeInfo.averageRating}</div>
-                <div class="raitings__number">${selectedResult.volumeInfo.ratingsCount}<br />raitings</div>
+                <div class="raitings__raiting">${
+                  selectedResult.volumeInfo.averageRating
+                    ? selectedResult.volumeInfo.averageRating
+                    : '-'
+                }</div>
+                <div class="raitings__number">${
+                  selectedResult.volumeInfo.ratingsCount
+                    ? selectedResult.volumeInfo.ratingsCount
+                    : 0
+                }<br />raitings</div>
               </div>
               <div class="additional-info">
-                Genre: ${selectedResult.volumeInfo.categories[0]}<br />Publication date: ${selectedResult.volumeInfo.publishedDate}<br />Pages:
+                Genre: ${
+                  selectedResult.volumeInfo.categories[0]
+                    ? selectedResult.volumeInfo.categories[0]
+                    : selectedResult.volumeInfo.categories
+                }<br />Publication date: ${
+    selectedResult.volumeInfo.publishedDate
+  }<br />Pages:
                 ${selectedResult.volumeInfo.pageCount}
               </div>
               <div class="summary-title">Summary:</div>
