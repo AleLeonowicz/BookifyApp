@@ -20,6 +20,9 @@ export const getFilteredData = function (data) {
       item.volumeInfo.imageLinks.thumbnail &&
       item.volumeInfo.title &&
       item.volumeInfo.authors &&
-      item.volumeInfo.categories
+      item.volumeInfo.categories &&
+      item.volumeInfo.description &&
+      item.volumeInfo.pageCount &&
+      item.volumeInfo.publishedDate
   );
 };

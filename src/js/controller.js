@@ -22,7 +22,7 @@ constants.form.addEventListener('submit', async function (e) {
   );
 
   const filteredData = helpers.getFilteredData(data.items);
-  // console.log('filteredData', filteredData);
+  console.log('filteredData', filteredData);
   model.setState(filteredData, 'data');
 
   // console.log('model.state.data', model.state.data);

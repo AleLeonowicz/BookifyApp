@@ -26,6 +26,7 @@ export const clearContainer = function (container) {
 };
 
 export const insertResultsDetails = function (selectedResult) {
+  console.log(selectedResult);
   const mockup = `
   
             <img
@@ -72,9 +73,9 @@ export const insertResultsDetails = function (selectedResult) {
               </div>
               <div class="additional-info">
                 Genre: ${
-                  selectedResult.volumeInfo.categories[0]
+                  selectedResult.volumeInfo.categories
                     ? selectedResult.volumeInfo.categories[0]
-                    : selectedResult.volumeInfo.categories
+                    : '-'
                 }<br />Publication date: ${
     selectedResult.volumeInfo.publishedDate
   }<br />Pages:
