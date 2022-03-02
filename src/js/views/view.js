@@ -91,8 +91,16 @@ export const insertResultsDetails = function (selectedResult) {
                     alt="star"
                     src="src/img/star_3.png"
                   />
-                  <div class="raitings__raiting">4.8</div>
-                  <div class="raitings__number">152<br />raitings</div>
+                  <div class="raitings__raiting">${
+                    selectedResult.volumeInfo.averageRating
+                      ? selectedResult.volumeInfo.averageRating
+                      : '-'
+                  }</div>
+                  <div class="raitings__number">${
+                    selectedResult.volumeInfo.ratingsCount
+                      ? selectedResult.volumeInfo.ratingsCount
+                      : 0
+                  }<br />raitings</div>
                 </div>
                 <div class="container__icons-2">
                   <img

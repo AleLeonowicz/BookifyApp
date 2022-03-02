@@ -19,6 +19,7 @@ export const getFilteredData = function (data) {
       item.volumeInfo.imageLinks &&
       item.volumeInfo.imageLinks.thumbnail &&
       item.volumeInfo.title &&
-      item.volumeInfo.authors
+      item.volumeInfo.authors &&
+      item.volumeInfo.categories
   );
 };
