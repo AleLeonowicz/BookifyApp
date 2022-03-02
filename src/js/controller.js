@@ -15,6 +15,7 @@ import 'regenerator-runtime/runtime';
 
 constants.form.addEventListener('submit', async function (e) {
   e.preventDefault();
+  view.clearContainer(constants.resultDetailsContainer);
   view.clearContainer(constants.resultListContainer);
   const userInput = helpers.getQuery();
   const data = await helpers.getJSON(
