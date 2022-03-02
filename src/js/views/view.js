@@ -1,4 +1,7 @@
 import * as constants from '../constants.js';
+import heart1 from 'url:../../img/heart1.png';
+import star1 from 'url:../../img/star1.png';
+import eyeglasses1 from 'url:../../img/eyeglasses1.png';
 
 export const scrollIntoView = function (id) {
   document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
@@ -45,12 +48,12 @@ export const insertResultsDetails = function (selectedResult) {
                   <img
                     class="to-read__icon"
                     alt="To read list"
-                    src="src/img/eyeglasses_2.png"
+                    src="${eyeglasses1}"
                   />
                   <img
                     class="favourites__icon"
                     alt="Favourites"
-                    src="src/img/heart_3.png"
+                    src="${heart1}"
                   />
                 </div>
               </div>
@@ -58,7 +61,7 @@ export const insertResultsDetails = function (selectedResult) {
                 <img
                   class="raitings__star-img"
                   alt="star"
-                  src="src/img/star_3.png"
+                  src="${star1}"
                 />
                 <div class="raitings__raiting">${
                   selectedResult.volumeInfo.averageRating
@@ -90,7 +93,7 @@ export const insertResultsDetails = function (selectedResult) {
                   <img
                     class="raitings__star-img"
                     alt="star"
-                    src="src/img/star_3.png"
+                    src="${star1}"
                   />
                   <div class="raitings__raiting">${
                     selectedResult.volumeInfo.averageRating
@@ -107,12 +110,12 @@ export const insertResultsDetails = function (selectedResult) {
                   <img
                     class="to-read__icon"
                     alt="To read list"
-                    src="src/img/eyeglasses_2.png"
+                    src="${eyeglasses1}"
                   />
                   <img
                     class="favourites__icon"
                     alt="To read list"
-                    src="src/img/heart_3.png"
+                    src="${heart1}"
                   />
                 </div>
               </div>
