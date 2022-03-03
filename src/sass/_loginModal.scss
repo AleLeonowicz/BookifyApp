@@ -13,17 +13,24 @@
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: auto; /* 15% from the top and centered */
   padding: 15px;
-  padding-top: 5px;
   border: 1px solid #888;
-  width: 30%; /* Could be more or less, depending on screen size */
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
 }
-
+.loginModalClose-container {
+  width: 100%;
+  height: 10px;
+}
 .close {
   color: #aaa;
   float: right;
-  font-size: 20px;
+  font-size: 2em;
+  display: flex;
+  line-height: 0.5em;
 }
 
 .close:hover,
@@ -34,6 +41,48 @@
 }
 
 .login-btns-container {
-  margin-top: 140px;
-  margin-bottom: 130px;
+  margin: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-medium) and (max-width: $bp-large) {
+  .modal-content {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-small) and (max-width: $bp-medium) {
+  .modal-content {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
+  .modal-content {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
+  .modal-content {
+    width: 150px;
+    height: 150px;
+  }
 }
