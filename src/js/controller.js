@@ -2,7 +2,7 @@ import * as model from './model.js';
 import * as helpers from './helpers.js';
 import * as view from './views/view.js';
 import * as constants from './constants.js';
-
+import * as firebaseUtils from './firebase.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -55,3 +55,5 @@ constants.resultListContainer.addEventListener('click', async function (e) {
   view.insertResultsDetails(model.state.selectedResult);
   view.scrollIntoView('#result-details');
 });
+
+firebaseUtils.initAuth();
