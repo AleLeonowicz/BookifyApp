@@ -13,20 +13,20 @@
   justify-content: flex-end;
 }
 
-.header__menu {
-  display: none;
-  filter: invert(100%) sepia(0%) saturate(7465%) hue-rotate(66deg)
-    brightness(101%) contrast(101%);
-}
+// .header__menu {
+//   display: none;
+//   filter: invert(100%) sepia(0%) saturate(7465%) hue-rotate(66deg)
+//     brightness(101%) contrast(101%);
+// }
 
-.header__btn-login {
-  //   min-height: 30px;
-  //   min-width: 100px;
-  background-color: transparent;
-  font-size: 2em;
-  margin-right: 30px;
-  font-weight: 400;
-}
+// .header__btn-login {
+//   //   min-height: 30px;
+//   //   min-width: 100px;
+//   background-color: transparent;
+//   font-size: 2em;
+//   margin-right: 30px;
+//   font-weight: 400;
+// }
 
 .header__btn-signup {
   min-height: 30px;
@@ -58,14 +58,21 @@
     width: 520px;
   }
 
-  .header__menu {
-    display: block;
-    height: 35px;
-  }
+  // .header__menu {
+  //   display: block;
+  //   height: 35px;
+  // }
 
-  .header__btn-login,
+  //   .header__btn-login,
+  //   .header__btn-signup {
+  //     display: none;
+  //   }
+
   .header__btn-signup {
-    display: none;
+    min-height: 28px;
+    min-width: 90px;
+    font-size: 1.8em;
+    font-weight: 400;
   }
 }
 
@@ -81,14 +88,20 @@
     width: 380px;
   }
 
-  .header__menu {
-    display: block;
-    height: 30px;
-  }
+  // .header__menu {
+  //   display: block;
+  //   height: 30px;
+  // }
 
-  .header__btn-login,
+  // .header__btn-login,
+  // .header__btn-signup {
+  //   display: none;
+  // }
   .header__btn-signup {
-    display: none;
+    min-height: 25px;
+    min-width: 70px;
+    font-size: 1.6em;
+    font-weight: 400;
   }
 }
 
@@ -104,13 +117,20 @@
     width: 280px;
   }
 
-  .header__menu {
-    display: block;
-    height: 25px;
-  }
+  // .header__menu {
+  //   display: block;
+  //   height: 25px;
+  // }
 
-  .header__btn-login,
+  // .header__btn-login,
+  // .header__btn-signup {
+  //   display: none;
+  // }
+
   .header__btn-signup {
-    display: none;
+    min-height: 20px;
+    min-width: 70px;
+    font-size: 1.4em;
+    font-weight: 400;
   }
 }
