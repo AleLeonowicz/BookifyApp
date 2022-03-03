@@ -1,6 +1,7 @@
 import * as model from './model.js';
 import * as helpers from './helpers.js';
 import * as view from './views/view.js';
+import * as loginModal from './views/loginModal.js';
 import * as constants from './constants.js';
 import * as firebaseUtils from './firebase.js';
 import 'core-js/stable';
@@ -57,3 +58,7 @@ constants.resultListContainer.addEventListener('click', async function (e) {
 });
 
 firebaseUtils.initAuth();
+
+constants.modalOpenBtn.addEventListener('click', loginModal.openModal);
+constants.modalCloseBtn.addEventListener('click', loginModal.closeModalBtn);
+window.addEventListener('click', loginModal.closeModal);
