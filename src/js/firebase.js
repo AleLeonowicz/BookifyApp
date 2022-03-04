@@ -1,6 +1,7 @@
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import firebase from 'firebase/compat/app';
+import { getAuth, signOut } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD7WwLtqpA3MQbG_VKHXypOxLI41uvxFVo',
@@ -11,18 +12,9 @@ const firebaseConfig = {
   appId: '1:88661068138:web:9f05b25d7165685561fd13',
   measurementId: 'G-9VJ54WV6LW',
 };
-firebase.initializeApp(firebaseConfig);
+export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-ui.start('#firebaseui-auth-container', {
-  signInOptions: [
-    // List of OAuth providers supported.
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-  ],
-  // Other config options...
-});
 
 const uiConfig = {
   callbacks: {
@@ -53,16 +45,21 @@ const uiConfig = {
   // privacyPolicyUrl: '<your-privacy-policy-url>'
 };
 
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    // User is signed in.
-    console.log('logged in', user);
-  } else {
-    // User is not signed in.
-    console.log('logged out');
-  }
-});
+// export const initAuthStateListener = () => {
+
+// };
 
 export const initAuth = () => {
   ui.start('#firebaseui-auth-container', uiConfig);
+};
+
+export const logOut = function () {
+  const auth = getAuth();
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch(error => {
+      // An error happened.
+    });
 };

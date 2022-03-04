@@ -57,8 +57,20 @@ constants.resultListContainer.addEventListener('click', async function (e) {
   view.scrollIntoView('#result-details');
 });
 
+firebaseUtils.firebaseApp.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    // User is signed in.
+    console.log('logged in````', user);
+  } else {
+    // User is not signed in.
+    console.log('logged out````');
+  }
+});
+
 firebaseUtils.initAuth();
 
 constants.modalOpenBtn.addEventListener('click', loginModal.openModal);
 constants.modalCloseBtn.addEventListener('click', loginModal.closeModalBtn);
 window.addEventListener('click', loginModal.closeModal);
+
+constants.logOutBtn.addEventListener('click', firebaseUtils.logOut);
