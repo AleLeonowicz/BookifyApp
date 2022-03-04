@@ -72,8 +72,8 @@
 
 @media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
   .modal-content {
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 280px;
   }
 }
 
@@ -82,7 +82,7 @@
 
 @media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
   .modal-content {
-    width: 150px;
-    height: 150px;
+    width: 220px;
+    height: 220px;
   }
 }

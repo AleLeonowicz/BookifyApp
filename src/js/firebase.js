@@ -31,7 +31,7 @@ const uiConfig = {
       // User successfully signed in.
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
-      return true;
+      return false;
     },
     uiShown: function () {
       // The widget is rendered.
@@ -41,7 +41,7 @@ const uiConfig = {
   },
   // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
   signInFlow: 'popup',
-  signInSuccessUrl: '<url-to-redirect-to-on-success>',
+  // signInSuccessUrl: '<url-to-redirect-to-on-success>',
   signInOptions: [
     // Leave the lines as is for the providers you want to offer your users.
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -52,6 +52,16 @@ const uiConfig = {
   // Privacy policy url./
   // privacyPolicyUrl: '<your-privacy-policy-url>'
 };
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    // User is signed in.
+    console.log('logged in', user);
+  } else {
+    // User is not signed in.
+    console.log('logged out');
+  }
+});
 
 export const initAuth = () => {
   ui.start('#firebaseui-auth-container', uiConfig);
