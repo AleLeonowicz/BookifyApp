@@ -15,4 +15,8 @@ export const searchResult = document.querySelector('.search-result');
 export const modal = document.getElementById('loginModal');
 export const modalOpenBtn = document.getElementById('signup-btn');
 export const modalCloseBtn = document.getElementById('modalClose');
+export const signUpBtn = document.querySelector('.header__btn-signup');
 export const logOutBtn = document.querySelector('.header__btn-logout');
+export const usersEmail = document.querySelector(
+  '.header__usersEmail-container'
+);

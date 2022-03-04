@@ -64,7 +64,7 @@
 }
 
 .search__field {
-  width: 490px;
+  width: 498px;
   height: 45px;
   border: none;
   background: none;
@@ -85,7 +85,7 @@
 
 .nav__btn-search {
   height: 45px;
-  width: 110px;
+  width: 100px;
   background-color: $color-primary;
   font-size: 2em;
   font-weight: 400;
@@ -122,11 +122,11 @@
   }
 
   .search__field {
-    width: 360px;
+    width: 348px;
   }
 
   .nav__btn-search {
-    width: 90px;
+    width: 100px;
   }
 
   .nav__heart,
@@ -151,14 +151,17 @@
 
   .nav__search {
     width: 520px;
+    height: 40px;
   }
 
   .search__field {
-    width: 430px;
+    width: 428px;
+    height: 40px;
   }
 
   .nav__btn-search {
     width: 90px;
+    height: 40px;
   }
 
   .nav__heart,
@@ -210,7 +213,7 @@
   }
 
   .search__field {
-    width: 310px;
+    width: 308px;
   }
 
   .nav__btn-search {
@@ -292,7 +295,7 @@
 
   .search__field {
     font-size: 1.5em;
-    width: 220px;
+    width: 208px;
   }
 
   .nav__btn-search {

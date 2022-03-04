@@ -1,7 +1,7 @@
 import * as model from './model.js';
 import * as helpers from './helpers.js';
 import * as view from './views/view.js';
-import * as loginModal from './views/loginModal.js';
+import * as loginModalView from './views/loginModalView.js';
 import * as constants from './constants.js';
 import * as firebaseUtils from './firebase.js';
 import 'core-js/stable';
@@ -61,16 +61,23 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(function (user) {
   if (user) {
     // User is signed in.
     console.log('logged in````', user);
+    constants.usersEmail.style.display = 'flex';
+    constants.logOutBtn.style.display = 'flex';
+    constants.signUpBtn.style.display = 'none';
+    constants.modal.style.display = 'none';
   } else {
     // User is not signed in.
     console.log('logged out````');
+    constants.usersEmail.style.display = 'none';
+    constants.logOutBtn.style.display = 'none';
+    constants.signUpBtn.style.display = 'flex';
   }
 });
 
 firebaseUtils.initAuth();
 
-constants.modalOpenBtn.addEventListener('click', loginModal.openModal);
-constants.modalCloseBtn.addEventListener('click', loginModal.closeModalBtn);
-window.addEventListener('click', loginModal.closeModal);
+constants.modalOpenBtn.addEventListener('click', loginModalView.openModal);
+constants.modalCloseBtn.addEventListener('click', loginModalView.closeModalBtn);
+window.addEventListener('click', loginModalView.closeModal);
 
 constants.logOutBtn.addEventListener('click', firebaseUtils.logOut);
