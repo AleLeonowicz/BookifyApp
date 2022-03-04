@@ -71,6 +71,7 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(function (user) {
     constants.usersEmail.style.display = 'none';
     constants.logOutBtn.style.display = 'none';
     constants.signUpBtn.style.display = 'flex';
+    firebaseUtils.initAuth();
   }
 });
 
