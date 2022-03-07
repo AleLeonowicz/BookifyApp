@@ -46,14 +46,19 @@ constants.resultListContainer.addEventListener('click', async function (e) {
   // console.log(selectedResult);
 
   model.setState(selectedResult, 'selectedResult');
-  // console.log('model.state.selectedResult', model.state.selectedResult);
+  console.log('model.state', model.state);
 
-  // console.log(
-  //   'constants.resultDetailsContainer',
-  //   constants.resultDetailsContainer
-  // );
   view.clearContainer(constants.resultDetailsContainer);
   view.insertResultsDetails(model.state.selectedResult);
+  document
+    .querySelector('.favourites__icon')
+    .addEventListener(
+      'click',
+      firebaseUtils.addToFavourites(
+        model.state.userId,
+        model.state.selectedResult.selfLink
+      )
+    );
   view.scrollIntoView('#nav');
 });
 
@@ -61,19 +66,16 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(function (user) {
   if (user) {
     // User is signed in.
     console.log('logged in````', user);
+
     model.setState(user._delegate.uid, 'userId');
-    console.log(model.state);
-    firebaseUtils.addToFavourites();
-    constants.usersEmail.style.display = 'flex';
-    constants.logOutBtn.style.display = 'flex';
-    constants.signUpBtn.style.display = 'none';
-    constants.modal.style.display = 'none';
+    helpers.setDisplayFlex([constants.usersEmail, constants.logOutBtn]);
+    helpers.setDisplayNone([constants.signUpBtn, constants.modal]);
   } else {
     // User is not signed in.
     console.log('logged out````');
-    constants.usersEmail.style.display = 'none';
-    constants.logOutBtn.style.display = 'none';
-    constants.signUpBtn.style.display = 'flex';
+
+    helpers.setDisplayNone([constants.usersEmail, constants.logOutBtn]);
+    helpers.setDisplayFlex([constants.signUpBtn]);
     firebaseUtils.initAuth();
   }
 });
@@ -83,5 +85,4 @@ firebaseUtils.initAuth();
 constants.modalOpenBtn.addEventListener('click', loginModalView.openModal);
 constants.modalCloseBtn.addEventListener('click', loginModalView.closeModalBtn);
 window.addEventListener('click', loginModalView.closeModal);
-
 constants.logOutBtn.addEventListener('click', firebaseUtils.logOut);

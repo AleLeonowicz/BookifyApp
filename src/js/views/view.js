@@ -29,7 +29,6 @@ export const clearContainer = function (container) {
 };
 
 export const insertResultsDetails = function (selectedResult) {
-  console.log(selectedResult);
   const mockup = `
   
             <img

@@ -26,3 +26,11 @@ export const getFilteredData = function (data) {
       item.volumeInfo.publishedDate
   );
 };
+
+export const setDisplayNone = function (arr) {
+  arr.forEach(element => (element.style.display = 'none'));
+};
+
+export const setDisplayFlex = function (arr) {
+  arr.forEach(element => (element.style.display = 'flex'));
+};
