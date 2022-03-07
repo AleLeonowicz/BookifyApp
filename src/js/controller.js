@@ -61,6 +61,9 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(function (user) {
   if (user) {
     // User is signed in.
     console.log('logged in````', user);
+    model.setState(user._delegate.uid, 'userId');
+    console.log(model.state);
+    firebaseUtils.addToFavourites();
     constants.usersEmail.style.display = 'flex';
     constants.logOutBtn.style.display = 'flex';
     constants.signUpBtn.style.display = 'none';

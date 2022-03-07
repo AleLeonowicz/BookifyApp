@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/AleLeonowicz/BookifyApp#readme",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.2.1",
-    "parcel": "^2.2.1",
+    "@parcel/transformer-sass": "^2.3.2",
+    "parcel": "^2.3.2",
+    "process": "^0.11.10",
     "sass": "^1.49.7"
   },
   "dependencies": {

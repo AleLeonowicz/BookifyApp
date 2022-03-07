@@ -1,7 +1,17 @@
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import firebase from 'firebase/compat/app';
+// import { getFirestore } from 'firebase/compat/firestore';
+import {
+  getFirestore,
+  collection,
+  doc,
+  addDoc,
+  getDocs,
+  setDoc,
+} from 'firebase/firestore';
 import { getAuth, signOut } from 'firebase/auth';
+import * as model from './model.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyD7WwLtqpA3MQbG_VKHXypOxLI41uvxFVo',
@@ -14,6 +24,9 @@ const firebaseConfig = {
 };
 export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
+export const database = getFirestore();
+
+console.log('database', database);
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 const uiConfig = {
@@ -62,4 +75,49 @@ export const logOut = function () {
     .catch(error => {
       // An error happened.
     });
+};
+
+export const addAdaLovelace = async function () {
+  try {
+    const docRef = await addDoc(collection(database, 'users'), {
+      first: 'Ada',
+      last: 'Lovelace',
+      born: 1815,
+    });
+    console.log('docRef', docRef);
+    console.log('Document written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
+
+export const getDocuments = async function () {
+  const querySnapshot = await getDocs(collection(database, 'favourites'));
+  querySnapshot.forEach(doc => {
+    console.log(`${doc.id} => ${doc.data()}`);
+  });
+};
+
+// export const addToFavourites = async function () {
+//   try {
+//     const docRef = await addDoc(collection(database, 'favourites'), {
+//       favourites: ['book1', 'book2', 'book3'],
+//     });
+//   } catch (e) {
+//     console.error('Error adding document: ', e);
+//   }
+// };
+
+export const addToFavourites = async function () {
+  try {
+    console.log('model.state.userId', model.state.userId);
+    const docRef = await setDoc(
+      doc(database, 'favourites', model.state.userId),
+      {
+        favourites: ['book1', 'book2', 'book3'],
+      }
+    );
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
 };
