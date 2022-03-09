@@ -7,6 +7,7 @@ import {
   collection,
   doc,
   addDoc,
+  getDoc,
   getDocs,
   setDoc,
 } from 'firebase/firestore';
@@ -76,7 +77,23 @@ export const logOut = function () {
     });
 };
 
-export const addToFavourites = async function (document, payload) {
+export const getDocuments = async function (collection, document) {
+  const docRef = doc(database, collection, document);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.data() && docSnap.data().favourites) {
+    console.log(
+      'Get documents from DB: docSnap.data().favourites',
+      docSnap.data().favourites
+    );
+    return docSnap.data().favourites;
+  } else {
+    return;
+  }
+};
+
+export const addToFavouritesDb = async function (document, payload) {
+  console.log(payload);
   try {
     const docRef = await setDoc(doc(database, 'favourites', document), {
       favourites: payload,
@@ -85,13 +102,3 @@ export const addToFavourites = async function (document, payload) {
     console.error('Error adding document: ', e);
   }
 };
-
-/*
-export const getDocuments = async function () {
-  const querySnapshot = await getDocs(collection(database, 'favourites'));
-  querySnapshot.forEach(doc => {
-    console.log(`${doc.id} => ${doc.data()}`);
-  });
-};
-
-*/

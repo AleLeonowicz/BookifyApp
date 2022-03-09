@@ -24,7 +24,7 @@ constants.form.addEventListener('submit', async function (e) {
   );
 
   const filteredData = helpers.getFilteredData(data.items);
-  console.log('filteredData', filteredData);
+  // console.log('filteredData', filteredData);
   model.setState(filteredData, 'data');
 
   // console.log('model.state.data', model.state.data);
@@ -46,28 +46,76 @@ constants.resultListContainer.addEventListener('click', async function (e) {
   // console.log(selectedResult);
 
   model.setState(selectedResult, 'selectedResult');
-  console.log('model.state', model.state);
+  // console.log('model.state', model.state);
 
   view.clearContainer(constants.resultDetailsContainer);
   view.insertResultsDetails(model.state.selectedResult);
+
+  view.scrollIntoView('#nav');
+
   document
     .querySelector('.favourites__icon')
-    .addEventListener(
-      'click',
-      firebaseUtils.addToFavourites(
-        model.state.userId,
-        model.state.selectedResult.selfLink
-      )
-    );
-  view.scrollIntoView('#nav');
+    .addEventListener('click', async function () {
+      const addToFavouritesState = function () {
+        if (
+          model.state.favourites.includes(model.state.selectedResult.selfLink)
+        ) {
+          console.log(
+            'removing model.state.selectedResult.selfLink',
+            model.state.selectedResult.selfLink
+          );
+          let index = model.state.favourites.indexOf(
+            model.state.selectedResult.selfLink
+          );
+          model.state.favourites.splice(index, 1);
+          console.log(
+            'Removed element from: model.state.favourites',
+            model.state.favourites
+          );
+        } else {
+          model.state.favourites.push(model.state.selectedResult.selfLink);
+          console.log(
+            'Added element to: model.state.favourites',
+            model.state.favourites
+          );
+        }
+      };
+
+      addToFavouritesState();
+
+      firebaseUtils.addToFavouritesDb(model.state.userId, [
+        ...model.state.favourites,
+      ]);
+    });
 });
 
-firebaseUtils.firebaseApp.auth().onAuthStateChanged(function (user) {
+firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
   if (user) {
     // User is signed in.
     console.log('logged in````', user);
 
     model.setState(user._delegate.uid, 'userId');
+
+    const setStateFavourites = async function () {
+      const usersFavourites = await firebaseUtils.getDocuments(
+        'favourites',
+        model.state.userId
+      );
+
+      if (!usersFavourites) {
+        console.log("No user's favourites books yet");
+        return;
+      } else {
+        model.setState(usersFavourites, 'favourites');
+        console.log(
+          'Set model.state.favourites from DB after login: model.state.favourites',
+          model.state.favourites
+        );
+      }
+    };
+
+    setStateFavourites();
+
     helpers.setDisplayFlex([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayNone([constants.signUpBtn, constants.modal]);
   } else {
