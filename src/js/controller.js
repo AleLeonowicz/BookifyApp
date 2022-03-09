@@ -7,6 +7,8 @@ import * as firebaseUtils from './firebase.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
+/////
+
 // if (module.hot) {
 //   module.hot.accept();
 //
@@ -33,6 +35,11 @@ constants.form.addEventListener('submit', async function (e) {
   });
 });
 
+const reRenderResultContainer = () => {
+  view.clearContainer(constants.resultDetailsContainer);
+  view.insertResultsDetails(model.state.selectedResult, model.state.favourites);
+};
+
 constants.resultListContainer.addEventListener('click', async function (e) {
   // console.log(e.target);
   const searchResult = e.target.closest('.search-result');
@@ -48,14 +55,19 @@ constants.resultListContainer.addEventListener('click', async function (e) {
   model.setState(selectedResult, 'selectedResult');
   // console.log('model.state', model.state);
 
-  view.clearContainer(constants.resultDetailsContainer);
-  view.insertResultsDetails(model.state.selectedResult);
+  // view.clearContainer(constants.resultDetailsContainer);
+  // view.insertResultsDetails(model.state.selectedResult, model.state.favourites);
+  reRenderResultContainer();
 
   view.scrollIntoView('#nav');
 
   document
-    .querySelector('.favourites__icon')
-    .addEventListener('click', async function () {
+    .querySelector('.result-details__container')
+    .addEventListener('click', async function (e) {
+      const btn = e.target.closest('.favourites__icon');
+      console.log('e.target', e.target);
+      if (!btn) return;
+
       const addToFavouritesState = function () {
         if (
           model.state.favourites.includes(model.state.selectedResult.selfLink)
@@ -86,13 +98,18 @@ constants.resultListContainer.addEventListener('click', async function (e) {
       firebaseUtils.addToFavouritesDb(model.state.userId, [
         ...model.state.favourites,
       ]);
+
+      reRenderResultContainer();
     });
 });
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
   if (user) {
     // User is signed in.
     console.log('logged in````', user);
+    model.setState(true, 'isLoggedIn');
 
     model.setState(user._delegate.uid, 'userId');
 
@@ -121,6 +138,7 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
   } else {
     // User is not signed in.
     console.log('logged out````');
+    model.setState(false, 'isLoggedIn');
 
     helpers.setDisplayNone([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayFlex([constants.signUpBtn]);

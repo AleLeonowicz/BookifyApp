@@ -1,5 +1,6 @@
 import * as constants from '../constants.js';
 import heart1 from 'url:../../img/heart1.png';
+import heart2 from 'url:../../img/heart2.png';
 import star1 from 'url:../../img/star1.png';
 import eyeglasses1 from 'url:../../img/eyeglasses1.png';
 
@@ -28,7 +29,12 @@ export const clearContainer = function (container) {
   container.innerHTML = '';
 };
 
-export const insertResultsDetails = function (selectedResult) {
+export const insertResultsDetails = function (selectedResult, favourites) {
+  console.log('selectedResult', selectedResult);
+  console.log('favourites', favourites);
+  const heartIcon = favourites.includes(selectedResult.selfLink)
+    ? heart2
+    : heart1;
   const mockup = `
   
             <img
@@ -51,8 +57,9 @@ export const insertResultsDetails = function (selectedResult) {
                   />
                   <img
                     class="favourites__icon"
+                    id="heart__icon"
                     alt="Favourites"
-                    src="${heart1}"
+                    src="${heartIcon}"
                   />
                 </div>
               </div>
@@ -113,8 +120,9 @@ export const insertResultsDetails = function (selectedResult) {
                   />
                   <img
                     class="favourites__icon"
+                    id="heart__icon"
                     alt="To read list"
-                    src="${heart1}"
+                    src="${heartIcon}"
                   />
                 </div>
               </div>
