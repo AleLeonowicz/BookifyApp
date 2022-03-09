@@ -30,8 +30,8 @@ export const clearContainer = function (container) {
 };
 
 export const insertResultsDetails = function (selectedResult, favourites) {
-  console.log('selectedResult', selectedResult);
-  console.log('favourites', favourites);
+  // console.log('selectedResult', selectedResult);
+  // console.log('favourites', favourites);
   const heartIcon = favourites.includes(selectedResult.selfLink)
     ? heart2
     : heart1;

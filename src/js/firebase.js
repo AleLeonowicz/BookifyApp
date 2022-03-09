@@ -82,10 +82,10 @@ export const getDocuments = async function (collection, document) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.data() && docSnap.data().favourites) {
-    console.log(
-      'Get documents from DB: docSnap.data().favourites',
-      docSnap.data().favourites
-    );
+    // console.log(
+    //   'Get documents from DB: docSnap.data().favourites',
+    //   docSnap.data().favourites
+    // );
     return docSnap.data().favourites;
   } else {
     return;
@@ -93,7 +93,7 @@ export const getDocuments = async function (collection, document) {
 };
 
 export const addToFavouritesDb = async function (document, payload) {
-  console.log(payload);
+  // console.log(payload);
   try {
     const docRef = await setDoc(doc(database, 'favourites', document), {
       favourites: payload,
