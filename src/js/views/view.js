@@ -29,10 +29,10 @@ export const clearContainer = function (container) {
   container.innerHTML = '';
 };
 
-export const insertResultsDetails = function (selectedResult, favourites) {
+export const insertResultsDetails = function (selectedResult, state) {
   // console.log('selectedResult', selectedResult);
   // console.log('favourites', favourites);
-  const heartIcon = favourites.includes(selectedResult.selfLink)
+  const heartIcon = state.favourites.includes(selectedResult.selfLink)
     ? heart2
     : heart1;
   const mockup = `
@@ -49,19 +49,24 @@ export const insertResultsDetails = function (selectedResult, favourites) {
     selectedResult.volumeInfo.authors
   }
                 </div>
-                <div class="title__container__icons">
-                  <img
-                    class="to-read__icon"
-                    alt="To read list"
-                    src="${eyeglasses1}"
-                  />
-                  <img
-                    class="favourites__icon"
-                    id="heart__icon"
-                    alt="Favourites"
-                    src="${heartIcon}"
-                  />
-                </div>
+                ${
+                  state.isLoggedIn
+                    ? `<div class="title__container__icons">
+                <img
+                  class="to-read__icon"
+                  alt="To read list"
+                  src="${eyeglasses1}"
+                />
+                <img
+                  class="favourites__icon"
+                  id="heart__icon"
+                  alt="Favourites"
+                  src="${heartIcon}"
+                />
+              </div>`
+                    : ''
+                }
+                
               </div>
               <div class="ratings__container">
                 <img
@@ -112,19 +117,25 @@ export const insertResultsDetails = function (selectedResult, favourites) {
                       : 0
                   }<br />raitings</div>
                 </div>
-                <div class="container__icons-2">
-                  <img
-                    class="to-read__icon"
-                    alt="To read list"
-                    src="${eyeglasses1}"
-                  />
-                  <img
-                    class="favourites__icon"
-                    id="heart__icon"
-                    alt="To read list"
-                    src="${heartIcon}"
-                  />
-                </div>
+                ${
+                  state.isLoggedIn
+                    ? `<div class="container__icons-2">
+                    <img
+                      class="to-read__icon"
+                      alt="To read list"
+                      src="${eyeglasses1}"
+                    />
+                    <img
+                      class="favourites__icon"
+                      id="heart__icon"
+                      alt="To read list"
+                      src="${heartIcon}"
+                    />
+                  </div>`
+                    : ''
+                }
+                
+
               </div>
             </div>
           </div>
@@ -135,4 +146,13 @@ export const insertResultsDetails = function (selectedResult, favourites) {
             `;
 
   constants.resultDetailsContainer.insertAdjacentHTML('afterBegin', mockup);
+};
+
+export const reRenderResultContainer = function (
+  container,
+  selectedResult,
+  state
+) {
+  clearContainer(container);
+  insertResultsDetails(selectedResult, state);
 };

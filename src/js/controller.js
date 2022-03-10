@@ -39,13 +39,6 @@ constants.form.addEventListener('submit', async function (e) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-const reRenderResultContainer = () => {
-  view.clearContainer(constants.resultDetailsContainer);
-  view.insertResultsDetails(model.state.selectedResult, model.state.favourites);
-};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
 constants.resultListContainer.addEventListener('click', async function (e) {
   // console.log(e.target);
   const searchResult = e.target.closest('.search-result');
@@ -63,7 +56,11 @@ constants.resultListContainer.addEventListener('click', async function (e) {
 
   // view.clearContainer(constants.resultDetailsContainer);
   // view.insertResultsDetails(model.state.selectedResult, model.state.favourites);
-  reRenderResultContainer();
+  view.reRenderResultContainer(
+    constants.resultDetailsContainer,
+    model.state.selectedResult,
+    model.state
+  );
 
   view.scrollIntoView('#nav');
 });
@@ -76,39 +73,19 @@ document
     const btn = e.target.closest('.favourites__icon');
     // console.log('e.target', e.target);
     if (!btn) return;
+    if (!model.state.isLoggedIn) return;
 
-    const addToFavouritesState = function () {
-      if (
-        model.state.favourites.includes(model.state.selectedResult.selfLink)
-      ) {
-        // console.log(
-        //   'removing model.state.selectedResult.selfLink',
-        //   model.state.selectedResult.selfLink
-        // );
-        let index = model.state.favourites.indexOf(
-          model.state.selectedResult.selfLink
-        );
-        model.state.favourites.splice(index, 1);
-        // console.log(
-        //   'Removed element from: model.state.favourites',
-        //   model.state.favourites
-        // );
-      } else {
-        model.state.favourites.push(model.state.selectedResult.selfLink);
-        // console.log(
-        //   'Added element to: model.state.favourites',
-        //   model.state.favourites
-        // );
-      }
-    };
-
-    addToFavouritesState();
+    model.addToFavouritesState();
 
     firebaseUtils.addToFavouritesDb(model.state.userId, [
       ...model.state.favourites,
     ]);
 
-    reRenderResultContainer();
+    view.reRenderResultContainer(
+      constants.resultDetailsContainer,
+      model.state.selectedResult,
+      model.state
+    );
   });
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -118,28 +95,16 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     // User is signed in.
     console.log('logged in````', user);
     model.setState(true, 'isLoggedIn');
-
     model.setState(user._delegate.uid, 'userId');
 
-    const setStateFavourites = async function () {
-      const usersFavourites = await firebaseUtils.getDocuments(
-        'favourites',
-        model.state.userId
+    if (model.state.selectedResult)
+      view.reRenderResultContainer(
+        constants.resultDetailsContainer,
+        model.state.selectedResult,
+        model.state
       );
 
-      if (!usersFavourites) {
-        // console.log("No user's favourites books yet");
-        return;
-      } else {
-        model.setState(usersFavourites, 'favourites');
-        // console.log(
-        //   'Set model.state.favourites from DB after login: model.state.favourites',
-        //   model.state.favourites
-        // );
-      }
-    };
-
-    setStateFavourites();
+    model.setStateFavourites();
 
     helpers.setDisplayFlex([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayNone([constants.signUpBtn, constants.modal]);
@@ -147,10 +112,19 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     // User is not signed in.
     console.log('logged out````');
     model.setState(false, 'isLoggedIn');
+    model.setState('', 'userId');
+    model.setState([], 'favourites');
 
     helpers.setDisplayNone([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayFlex([constants.signUpBtn]);
+
     firebaseUtils.initAuth();
+    if (model.state.selectedResult)
+      view.reRenderResultContainer(
+        constants.resultDetailsContainer,
+        model.state.selectedResult,
+        model.state
+      );
   }
 });
 
