@@ -34,7 +34,6 @@ export const addToState = function (collection) {
 
 export const getStateFromDb = async function (collection) {
   const usersList = await firebaseUtils.getDocuments(collection, state.userId);
-
   if (!usersList) {
     return;
   } else {

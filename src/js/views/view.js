@@ -4,6 +4,7 @@ import heart2 from 'url:../../img/heart2.png';
 import star1 from 'url:../../img/star1.png';
 import glasses1 from 'url:../../img/eyeglasses1.png';
 import glasses2 from 'url:../../img/eyeglasses2.png';
+import harrytest from 'url:../../img/hp-test.jpg';
 
 export const scrollIntoView = function (id) {
   document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
@@ -161,4 +162,21 @@ export const reRenderResultContainer = function (
 ) {
   clearContainer(container);
   insertResultsDetails(selectedResult, state);
+};
+
+export const insertBookList = function (book) {
+  const mockup = `
+    <li class="toRead__preview">
+      <a class="toRead__preview__link">
+        <figure class="toRead__preview__fig">
+          <img src="${harrytest}" alt="Harry Potter">
+        </figure>
+        <div class="toRead__preview__data">
+          <h4 class="toRead__preview__title">Harry Potter and the Goblet of Fire</h4>
+          <p class="toRead__preview__author">J.K. Rowling</p>
+        </div>
+      </a>
+    </li>`;
+
+  constants.toReadList.insertAdjacentHTML('beforeEnd', mockup);
 };

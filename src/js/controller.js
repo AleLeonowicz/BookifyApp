@@ -127,17 +127,38 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
         model.state
       );
 
-    model.getStateFromDb('favourites');
-    model.getStateFromDb('toRead');
-
     helpers.setDisplayFlex([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayNone([constants.signUpBtn, constants.modal]);
+
+    await model.getStateFromDb('favourites');
+    await model.getStateFromDb('toRead');
+
+    const fetchBookListData = async function () {
+      const data = await model.state.toRead.map(link => helpers.getJSON(link));
+      const result = await Promise.all(data);
+      console.log('result', result);
+
+      model.setState(result, 'toReadList');
+    };
+    await fetchBookListData();
+
+    model.state.toRead.forEach(book => view.insertBookList());
 
     constants.toReadBtn.removeEventListener('click', loginModalView.openModal);
     constants.favouritesBtn.removeEventListener(
       'click',
       loginModalView.openModal
     );
+
+    constants.toReadBtn.addEventListener('click', function () {
+      window.getComputedStyle(constants.toReadContainer).opacity === '0'
+        ? (constants.toReadContainer.style.opacity = '1')
+        : (constants.toReadContainer.style.opacity = '0');
+
+      window.getComputedStyle(constants.toReadContainer)['z-index'] === '-1'
+        ? (constants.toReadContainer.style['z-index'] = '10')
+        : (constants.toReadContainer.style['z-index'] = '-1');
+    });
   } else {
     // User is not signed in.
     console.log('logged out````');
@@ -169,3 +190,5 @@ constants.modalOpenBtn.addEventListener('click', loginModalView.openModal);
 constants.modalCloseBtn.addEventListener('click', loginModalView.closeModalBtn);
 window.addEventListener('click', loginModalView.closeModal);
 constants.logOutBtn.addEventListener('click', firebaseUtils.logOut);
+
+/////////////////////////////////////////////////////////////////////////////////////////
