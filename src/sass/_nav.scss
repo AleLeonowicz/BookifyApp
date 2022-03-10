@@ -30,6 +30,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
 }
 
 .nav__logo {
@@ -108,7 +109,59 @@
 .nav__glasses {
   margin-right: 10px;
 }
+///////////////////////////////////////////////////////////////////////
 
+.toRead__container {
+  position: absolute;
+  top: 5em;
+  right: 5.5em;
+  z-index: 10;
+  width: 40rem;
+  background-color: #fff;
+  box-shadow: 0 0.8rem 5rem 2rem rgba($color-dark-blue, 0.1);
+  border-radius: 10px;
+
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.5s 0.2s;
+}
+
+.toRead__list {
+  list-style: none;
+}
+
+.toRead__preview {
+  display: flex;
+  align-items: center;
+  padding: 2em;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.toRead__preview__link {
+  display: flex;
+  align-items: center;
+}
+
+.toRead__preview__fig img {
+  width: 70px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-right: 2em;
+}
+
+.toRead__preview__data {
+  color: $color-dark-grey;
+}
+
+.toRead__preview__title {
+  font-size: 1.6em;
+}
+
+.toRead__preview__author {
+  font-size: 1.4em;
+}
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 

@@ -2,7 +2,8 @@ import * as constants from '../constants.js';
 import heart1 from 'url:../../img/heart1.png';
 import heart2 from 'url:../../img/heart2.png';
 import star1 from 'url:../../img/star1.png';
-import eyeglasses1 from 'url:../../img/eyeglasses1.png';
+import glasses1 from 'url:../../img/eyeglasses1.png';
+import glasses2 from 'url:../../img/eyeglasses2.png';
 
 export const scrollIntoView = function (id) {
   document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
@@ -35,6 +36,11 @@ export const insertResultsDetails = function (selectedResult, state) {
   const heartIcon = state.favourites.includes(selectedResult.selfLink)
     ? heart2
     : heart1;
+
+  const glassesIcon = state.toRead.includes(selectedResult.selfLink)
+    ? glasses2
+    : glasses1;
+
   const mockup = `
   
             <img
@@ -55,7 +61,7 @@ export const insertResultsDetails = function (selectedResult, state) {
                 <img
                   class="to-read__icon"
                   alt="To read list"
-                  src="${eyeglasses1}"
+                  src="${glassesIcon}"
                 />
                 <img
                   class="favourites__icon"
@@ -123,7 +129,7 @@ export const insertResultsDetails = function (selectedResult, state) {
                     <img
                       class="to-read__icon"
                       alt="To read list"
-                      src="${eyeglasses1}"
+                      src="${glassesIcon}"
                     />
                     <img
                       class="favourites__icon"

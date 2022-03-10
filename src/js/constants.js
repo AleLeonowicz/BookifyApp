@@ -20,3 +20,6 @@ export const logOutBtn = document.querySelector('.header__btn-logout');
 export const usersEmail = document.querySelector(
   '.header__usersEmail-container'
 );
+
+export const toReadBtn = document.querySelector('.nav__glasses');
+export const favouritesBtn = document.querySelector('.nav__heart');

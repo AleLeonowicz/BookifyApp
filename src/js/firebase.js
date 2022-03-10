@@ -81,24 +81,24 @@ export const getDocuments = async function (collection, document) {
   const docRef = doc(database, collection, document);
   const docSnap = await getDoc(docRef);
 
-  if (docSnap.data() && docSnap.data().favourites) {
+  if (docSnap.data() && docSnap.data()[collection]) {
     // console.log(
     //   'Get documents from DB: docSnap.data().favourites',
     //   docSnap.data().favourites
     // );
-    return docSnap.data().favourites;
+    return docSnap.data()[collection];
   } else {
     return;
   }
 };
 
-export const addToFavouritesDb = async function (document, payload) {
+export const addToDb = async function (collection, document, payload) {
   // console.log(payload);
   try {
-    const docRef = await setDoc(doc(database, 'favourites', document), {
-      favourites: payload,
+    const docRef = await setDoc(doc(database, collection, document), {
+      [collection]: payload,
     });
-  } catch (e) {
-    console.error('Error adding document: ', e);
+  } catch (err) {
+    console.error('Error adding document: ', TypeError);
   }
 };

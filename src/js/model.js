@@ -13,32 +13,31 @@ export const setState = function (newState, key) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-export const addToFavouritesState = function () {
-  if (state.favourites.includes(state.selectedResult.selfLink)) {
-    let index = state.favourites.indexOf(state.selectedResult.selfLink);
-    state.favourites.splice(index, 1);
+export const addToState = function (collection) {
+  if (state[collection].includes(state.selectedResult.selfLink)) {
+    let index = state[collection].indexOf(state.selectedResult.selfLink);
+    state[collection].splice(index, 1);
     console.log(
-      'Removed element from: model.state.favourites',
-      state.favourites
+      `Removed element from: model.state.${collection}`,
+      state[collection]
     );
   } else {
-    state.favourites.push(state.selectedResult.selfLink);
-    console.log('Added element to: model.state.favourites', state.favourites);
+    state[collection].push(state.selectedResult.selfLink);
+    console.log(
+      `Added element to: model.state.${collection}`,
+      state[collection]
+    );
   }
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-export const setStateFavourites = async function () {
-  const usersFavourites = await firebaseUtils.getDocuments(
-    'favourites',
-    state.userId
-  );
+export const getStateFromDb = async function (collection) {
+  const usersList = await firebaseUtils.getDocuments(collection, state.userId);
 
-  if (!usersFavourites) {
-    console.log("No user's favourites books yet");
+  if (!usersList) {
     return;
   } else {
-    setState(usersFavourites, 'favourites');
+    setState(usersList, collection);
   }
 };

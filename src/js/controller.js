@@ -75,10 +75,33 @@ document
     if (!btn) return;
     if (!model.state.isLoggedIn) return;
 
-    model.addToFavouritesState();
+    model.addToState('favourites');
 
-    firebaseUtils.addToFavouritesDb(model.state.userId, [
+    firebaseUtils.addToDb('favourites', model.state.userId, [
       ...model.state.favourites,
+    ]);
+
+    view.reRenderResultContainer(
+      constants.resultDetailsContainer,
+      model.state.selectedResult,
+      model.state
+    );
+  });
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+document
+  .querySelector('.result-details__container')
+  .addEventListener('click', async function (e) {
+    const btn = e.target.closest('.to-read__icon');
+    // console.log('e.target', e.target);
+    if (!btn) return;
+    if (!model.state.isLoggedIn) return;
+
+    model.addToState('toRead');
+
+    firebaseUtils.addToDb('toRead', model.state.userId, [
+      ...model.state.toRead,
     ]);
 
     view.reRenderResultContainer(
@@ -104,16 +127,24 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
         model.state
       );
 
-    model.setStateFavourites();
+    model.getStateFromDb('favourites');
+    model.getStateFromDb('toRead');
 
     helpers.setDisplayFlex([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayNone([constants.signUpBtn, constants.modal]);
+
+    constants.toReadBtn.removeEventListener('click', loginModalView.openModal);
+    constants.favouritesBtn.removeEventListener(
+      'click',
+      loginModalView.openModal
+    );
   } else {
     // User is not signed in.
     console.log('logged out````');
     model.setState(false, 'isLoggedIn');
     model.setState('', 'userId');
     model.setState([], 'favourites');
+    model.setState([], 'toRead');
 
     helpers.setDisplayNone([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayFlex([constants.signUpBtn]);
@@ -125,6 +156,8 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
         model.state.selectedResult,
         model.state
       );
+    constants.toReadBtn.addEventListener('click', loginModalView.openModal);
+    constants.favouritesBtn.addEventListener('click', loginModalView.openModal);
   }
 });
 
