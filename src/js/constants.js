@@ -25,3 +25,4 @@ export const toReadBtn = document.querySelector('.nav__glasses');
 export const favouritesBtn = document.querySelector('.nav__heart');
 export const toReadContainer = document.querySelector('.toRead__container');
 export const toReadList = document.querySelector('.toRead__list');
+export const toReadPlaceholder = document.querySelector('.toRead__placeholder');

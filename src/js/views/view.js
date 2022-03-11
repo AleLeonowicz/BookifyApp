@@ -164,19 +164,19 @@ export const reRenderResultContainer = function (
   insertResultsDetails(selectedResult, state);
 };
 
-export const insertBookList = function (book) {
+export const insertBookList = function (book, container) {
   const mockup = `
     <li class="toRead__preview">
       <a class="toRead__preview__link">
         <figure class="toRead__preview__fig">
-          <img src="${harrytest}" alt="Harry Potter">
+          <img src="${book.volumeInfo.imageLinks.thumbnail}" alt="${book.volumeInfo.authors}">
         </figure>
         <div class="toRead__preview__data">
-          <h4 class="toRead__preview__title">Harry Potter and the Goblet of Fire</h4>
-          <p class="toRead__preview__author">J.K. Rowling</p>
+          <h4 class="toRead__preview__title">${book.volumeInfo.title}</h4>
+          <p class="toRead__preview__author">${book.volumeInfo.authors}</p>
         </div>
       </a>
     </li>`;
 
-  constants.toReadList.insertAdjacentHTML('beforeEnd', mockup);
+  container.insertAdjacentHTML('beforeEnd', mockup);
 };

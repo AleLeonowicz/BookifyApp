@@ -2,6 +2,7 @@ import * as model from './model.js';
 import * as helpers from './helpers.js';
 import * as view from './views/view.js';
 import * as loginModalView from './views/loginModalView.js';
+import * as bookListsView from './views/bookListsView.js';
 import * as constants from './constants.js';
 import * as firebaseUtils from './firebase.js';
 import 'core-js/stable';
@@ -94,11 +95,10 @@ document
   .querySelector('.result-details__container')
   .addEventListener('click', async function (e) {
     const btn = e.target.closest('.to-read__icon');
-    // console.log('e.target', e.target);
     if (!btn) return;
     if (!model.state.isLoggedIn) return;
 
-    model.addToState('toRead');
+    await model.addToState('toRead');
 
     firebaseUtils.addToDb('toRead', model.state.userId, [
       ...model.state.toRead,
@@ -109,6 +109,12 @@ document
       model.state.selectedResult,
       model.state
     );
+
+    view.clearContainer(constants.toReadList);
+    model.state.toReadList.forEach(book => {
+      view.insertBookList(book, constants.toReadList);
+      console.log('3 for each');
+    });
   });
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -119,6 +125,9 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     console.log('logged in````', user);
     model.setState(true, 'isLoggedIn');
     model.setState(user._delegate.uid, 'userId');
+    model.setState([], 'favourites');
+    model.setState([], 'toRead');
+    model.setState([], 'toReadList');
 
     if (model.state.selectedResult)
       view.reRenderResultContainer(
@@ -136,14 +145,16 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     const fetchBookListData = async function () {
       const data = await model.state.toRead.map(link => helpers.getJSON(link));
       const result = await Promise.all(data);
-      console.log('result', result);
 
       model.setState(result, 'toReadList');
     };
     await fetchBookListData();
 
-    model.state.toRead.forEach(book => view.insertBookList());
+    model.state.toReadList.forEach(book =>
+      view.insertBookList(book, constants.toReadList)
+    );
 
+    /////
     constants.toReadBtn.removeEventListener('click', loginModalView.openModal);
     constants.favouritesBtn.removeEventListener(
       'click',
@@ -166,6 +177,7 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     model.setState('', 'userId');
     model.setState([], 'favourites');
     model.setState([], 'toRead');
+    model.setState([], 'toReadList');
 
     helpers.setDisplayNone([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayFlex([constants.signUpBtn]);
@@ -179,6 +191,8 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
       );
     constants.toReadBtn.addEventListener('click', loginModalView.openModal);
     constants.favouritesBtn.addEventListener('click', loginModalView.openModal);
+
+    view.clearContainer(constants.toReadList);
   }
 });
 
@@ -190,5 +204,7 @@ constants.modalOpenBtn.addEventListener('click', loginModalView.openModal);
 constants.modalCloseBtn.addEventListener('click', loginModalView.closeModalBtn);
 window.addEventListener('click', loginModalView.closeModal);
 constants.logOutBtn.addEventListener('click', firebaseUtils.logOut);
+
+window.addEventListener('click', bookListsView.closebookList);
 
 /////////////////////////////////////////////////////////////////////////////////////////

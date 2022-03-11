@@ -1,5 +1,6 @@
 import { API_URL, RES_PER_PAGE } from './config.js';
 import * as firebaseUtils from './firebase.js';
+import * as helpers from './helpers.js';
 
 export let state = {
   data: [],
@@ -13,7 +14,7 @@ export const setState = function (newState, key) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-export const addToState = function (collection) {
+export const addToState = async function (collection) {
   if (state[collection].includes(state.selectedResult.selfLink)) {
     let index = state[collection].indexOf(state.selectedResult.selfLink);
     state[collection].splice(index, 1);
@@ -21,12 +22,21 @@ export const addToState = function (collection) {
       `Removed element from: model.state.${collection}`,
       state[collection]
     );
+    console.log('state.toReadList', state.toReadList);
+    const filteredBooks = state.toReadList.filter(book => {
+      return book.selfLink !== state.selectedResult.selfLink;
+    });
+    console.log('filteredBooks', filteredBooks);
+    setState(filteredBooks, 'toReadList');
   } else {
     state[collection].push(state.selectedResult.selfLink);
     console.log(
       `Added element to: model.state.${collection}`,
       state[collection]
     );
+    const addedBook = await helpers.getJSON(state.selectedResult.selfLink);
+    console.log(addedBook);
+    state.toReadList.push(addedBook);
   }
 };
 
