@@ -133,13 +133,6 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     model.setState([], 'toReadList');
     model.setState([], 'favouritesList');
 
-    if (model.state.selectedResult)
-      view.reRenderResultContainer(
-        constants.resultDetailsContainer,
-        model.state.selectedResult,
-        model.state
-      );
-
     helpers.setDisplayFlex([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayNone([constants.signUpBtn, constants.modal]);
 
@@ -203,6 +196,13 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
         constants.favouritesPlaceholder.style.display = 'none';
       }
     });
+
+    if (model.state.selectedResult)
+      view.reRenderResultContainer(
+        constants.resultDetailsContainer,
+        model.state.selectedResult,
+        model.state
+      );
   } else {
     // User is not signed in.
     console.log('logged out````');
@@ -217,16 +217,18 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     helpers.setDisplayFlex([constants.signUpBtn]);
 
     firebaseUtils.initAuth();
+    constants.toReadBtn.addEventListener('click', loginModalView.openModal);
+    constants.favouritesBtn.addEventListener('click', loginModalView.openModal);
+
+    view.clearContainer(constants.toReadList);
+    view.clearContainer(constants.favouritesList);
+
     if (model.state.selectedResult)
       view.reRenderResultContainer(
         constants.resultDetailsContainer,
         model.state.selectedResult,
         model.state
       );
-    constants.toReadBtn.addEventListener('click', loginModalView.openModal);
-    constants.favouritesBtn.addEventListener('click', loginModalView.openModal);
-
-    view.clearContainer(constants.toReadList);
   }
 });
 
