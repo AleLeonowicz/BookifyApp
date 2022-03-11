@@ -76,7 +76,7 @@ document
     if (!btn) return;
     if (!model.state.isLoggedIn) return;
 
-    model.addToState('favourites');
+    await model.addToState('favourites', 'favouritesList');
 
     firebaseUtils.addToDb('favourites', model.state.userId, [
       ...model.state.favourites,
@@ -87,6 +87,10 @@ document
       model.state.selectedResult,
       model.state
     );
+    view.clearContainer(constants.favouritesList);
+    model.state.favouritesList.forEach(book => {
+      bookListsView.insertBookList(book, constants.favouritesList);
+    });
   });
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -98,7 +102,7 @@ document
     if (!btn) return;
     if (!model.state.isLoggedIn) return;
 
-    await model.addToState('toRead');
+    await model.addToState('toRead', 'toReadList');
 
     firebaseUtils.addToDb('toRead', model.state.userId, [
       ...model.state.toRead,
@@ -112,8 +116,7 @@ document
 
     view.clearContainer(constants.toReadList);
     model.state.toReadList.forEach(book => {
-      view.insertBookList(book, constants.toReadList);
-      console.log('3 for each');
+      bookListsView.insertBookList(book, constants.toReadList);
     });
   });
 
@@ -128,6 +131,7 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     model.setState([], 'favourites');
     model.setState([], 'toRead');
     model.setState([], 'toReadList');
+    model.setState([], 'favouritesList');
 
     if (model.state.selectedResult)
       view.reRenderResultContainer(
@@ -142,16 +146,23 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     await model.getStateFromDb('favourites');
     await model.getStateFromDb('toRead');
 
-    const fetchBookListData = async function () {
-      const data = await model.state.toRead.map(link => helpers.getJSON(link));
+    const fetchBookListData = async function (fromList, toList) {
+      const data = await model.state[fromList].map(link =>
+        helpers.getJSON(link)
+      );
       const result = await Promise.all(data);
 
-      model.setState(result, 'toReadList');
+      model.setState(result, toList);
     };
-    await fetchBookListData();
+    await fetchBookListData('toRead', 'toReadList');
+    await fetchBookListData('favourites', 'favouritesList');
 
     model.state.toReadList.forEach(book =>
-      view.insertBookList(book, constants.toReadList)
+      bookListsView.insertBookList(book, constants.toReadList)
+    );
+
+    model.state.favouritesList.forEach(book =>
+      bookListsView.insertBookList(book, constants.favouritesList)
     );
 
     /////
@@ -169,6 +180,28 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
       window.getComputedStyle(constants.toReadContainer)['z-index'] === '-1'
         ? (constants.toReadContainer.style['z-index'] = '10')
         : (constants.toReadContainer.style['z-index'] = '-1');
+
+      if (model.state.toReadList.length === 0) {
+        constants.toReadPlaceholder.style.display = 'flex';
+      } else {
+        constants.toReadPlaceholder.style.display = 'none';
+      }
+    });
+
+    constants.favouritesBtn.addEventListener('click', function () {
+      window.getComputedStyle(constants.favouritesContainer).opacity === '0'
+        ? (constants.favouritesContainer.style.opacity = '1')
+        : (constants.favouritesContainer.style.opacity = '0');
+
+      window.getComputedStyle(constants.favouritesContainer)['z-index'] === '-1'
+        ? (constants.favouritesContainer.style['z-index'] = '10')
+        : (constants.favouritesContainer.style['z-index'] = '-1');
+
+      if (model.state.favouritesList.length === 0) {
+        constants.favouritesPlaceholder.style.display = 'flex';
+      } else {
+        constants.favouritesPlaceholder.style.display = 'none';
+      }
     });
   } else {
     // User is not signed in.
@@ -178,6 +211,7 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     model.setState([], 'favourites');
     model.setState([], 'toRead');
     model.setState([], 'toReadList');
+    model.setState([], 'favouritesList');
 
     helpers.setDisplayNone([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayFlex([constants.signUpBtn]);
@@ -205,6 +239,16 @@ constants.modalCloseBtn.addEventListener('click', loginModalView.closeModalBtn);
 window.addEventListener('click', loginModalView.closeModal);
 constants.logOutBtn.addEventListener('click', firebaseUtils.logOut);
 
-window.addEventListener('click', bookListsView.closebookList);
+window.addEventListener('click', e =>
+  bookListsView.closebookList(e, constants.toReadContainer, constants.toReadBtn)
+);
+
+window.addEventListener('click', e =>
+  bookListsView.closebookList(
+    e,
+    constants.favouritesContainer,
+    constants.favouritesBtn
+  )
+);
 
 /////////////////////////////////////////////////////////////////////////////////////////

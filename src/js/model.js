@@ -6,6 +6,8 @@ export let state = {
   data: [],
   favourites: [],
   toRead: [],
+  favouritesList: [],
+  toReadList: [],
 };
 
 export const setState = function (newState, key) {
@@ -14,29 +16,26 @@ export const setState = function (newState, key) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-export const addToState = async function (collection) {
-  if (state[collection].includes(state.selectedResult.selfLink)) {
-    let index = state[collection].indexOf(state.selectedResult.selfLink);
-    state[collection].splice(index, 1);
+export const addToState = async function (collection1, collection2) {
+  if (state[collection1].includes(state.selectedResult.selfLink)) {
+    let index = state[collection1].indexOf(state.selectedResult.selfLink);
+    state[collection1].splice(index, 1);
     console.log(
-      `Removed element from: model.state.${collection}`,
-      state[collection]
+      `Removed element from: model.state.${collection1}`,
+      state[collection1]
     );
-    console.log('state.toReadList', state.toReadList);
-    const filteredBooks = state.toReadList.filter(book => {
-      return book.selfLink !== state.selectedResult.selfLink;
-    });
-    console.log('filteredBooks', filteredBooks);
-    setState(filteredBooks, 'toReadList');
+    const filteredBooks = state[collection2].filter(
+      book => book.selfLink !== state.selectedResult.selfLink
+    );
+    setState(filteredBooks, collection2);
   } else {
-    state[collection].push(state.selectedResult.selfLink);
+    state[collection1].push(state.selectedResult.selfLink);
     console.log(
-      `Added element to: model.state.${collection}`,
-      state[collection]
+      `Added element to: model.state.${collection1}`,
+      state[collection1]
     );
     const addedBook = await helpers.getJSON(state.selectedResult.selfLink);
-    console.log(addedBook);
-    state.toReadList.push(addedBook);
+    state[collection2].push(addedBook);
   }
 };
 

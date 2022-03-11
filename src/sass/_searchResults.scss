@@ -97,15 +97,26 @@
   font-weight: 1000;
   max-width: 520px;
 }
+
 .to-read__icon {
   width: 40px;
   margin-right: 10px;
   cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .favourites__icon {
   width: 40px;
   cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .ratings__container-2 {

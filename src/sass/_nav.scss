@@ -104,6 +104,11 @@
   filter: invert(65%) sepia(83%) saturate(6267%) hue-rotate(227deg)
     brightness(100%) contrast(104%);
   cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .nav__glasses {
@@ -111,11 +116,10 @@
 }
 ///////////////////////////////////////////////////////////////////////
 
-.toRead__container {
+.booksList__container {
   position: absolute;
   top: 5em;
   padding: 1em;
-  right: 5.5em;
   z-index: -1;
   width: 40rem;
   background-color: #fff;
@@ -129,7 +133,11 @@
   overflow-x: hidden;
 }
 
-.toRead__title {
+.toRead-List {
+  right: 5.5em;
+}
+
+.booksList__title {
   color: $color-dark-grey;
   font-weight: 800;
   font-size: 2em;
@@ -139,10 +147,7 @@
   justify-content: center;
 }
 
-.toRead__list {
-  list-style: none;
-}
-
+.favourites__placeholder,
 .toRead__placeholder {
   color: $color-dark-grey;
   font-size: 1.6em;
@@ -151,7 +156,12 @@
   margin: 15px 0px;
 }
 
-.toRead__preview {
+.booksList-toRead__list,
+.bookList-favourites__list {
+  list-style: none;
+}
+
+.booksList__preview {
   display: flex;
   align-items: center;
   padding: 1em;
@@ -164,12 +174,12 @@
   }
 }
 
-.toRead__preview__link {
+.booksList__preview__link {
   display: flex;
   align-items: center;
 }
 
-.toRead__preview__fig img {
+.booksList__preview__fig img {
   width: 70px;
   height: 100px;
   object-fit: cover;
@@ -177,15 +187,15 @@
   margin-right: 2em;
 }
 
-.toRead__preview__data {
+.booksList__preview__data {
   color: $color-dark-grey;
 }
 
-.toRead__preview__title {
+.booksList__preview__title {
   font-size: 1.6em;
 }
 
-.toRead__preview__author {
+.booksList__preview__author {
   font-size: 1.4em;
 }
 ///////////////////////////////////////////////////////////////////////
