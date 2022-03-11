@@ -1,0 +1,215 @@
+.booksList__container {
+  position: absolute;
+  top: 50px;
+  padding: 10px;
+  z-index: -1;
+  width: 400px;
+  background-color: #fff;
+  box-shadow: 0 8px 50px 20px rgba($color-dark-blue, 0.1);
+  border-radius: 10px;
+  visibility: visible;
+  opacity: 0;
+  transition: all 0.5s 0.2s;
+  max-height: 562px;
+}
+
+.toRead-List {
+  right: 55px;
+}
+
+.booksList__title {
+  color: $color-dark-grey;
+  font-weight: 800;
+  font-size: 2em;
+  background: $color-light-brown;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  height: 32px;
+}
+
+.favourites__placeholder,
+.toRead__placeholder {
+  color: $color-dark-grey;
+  font-size: 1.6em;
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px;
+}
+
+.booksList-toRead__list,
+.booksList-favourites__list {
+  list-style: none;
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 500px;
+}
+
+.booksList__preview {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  transition: all 0.3s;
+  text-decoration: none;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: $color-light-brown;
+  }
+}
+
+.booksList__preview__link {
+  display: flex;
+  align-items: center;
+}
+
+.booksList__preview__fig img {
+  width: 70px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-right: 2em;
+}
+
+.booksList__preview__data {
+  color: $color-dark-grey;
+}
+
+.booksList__preview__title {
+  font-size: 1.6em;
+}
+
+.booksList__preview__author {
+  font-size: 1.4em;
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-medium) and (max-width: $bp-large) {
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-small) and (max-width: $bp-medium) {
+  .booksList__container {
+    top: 85px;
+    width: 350px;
+    max-height: 437px;
+    border-radius: 10px;
+  }
+
+  .toRead-List {
+    right: 50px;
+  }
+
+  .booksList-toRead__list,
+  .booksList-favourites__list {
+    list-style: none;
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 375px;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
+  .booksList__container {
+    top: 65px;
+    width: 300px;
+    max-height: 482px;
+    border-radius: 10px;
+  }
+
+  .toRead-List {
+    right: 45px;
+  }
+
+  .booksList-toRead__list,
+  .booksList-favourites__list {
+    list-style: none;
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 375px;
+  }
+
+  .booksList__title {
+    font-size: 1.8em;
+  }
+
+  .booksList-toRead__list,
+  .booksList-favourites__list {
+    max-height: 420px;
+  }
+
+  .booksList__preview__fig img {
+    width: 57px;
+    height: 80px;
+  }
+
+  .booksList__preview__title {
+    font-size: 1.5em;
+  }
+
+  .booksList__preview__author {
+    font-size: 1.3em;
+  }
+}
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+@media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
+  .booksList__container {
+    top: 65px;
+    width: 245px;
+    max-height: 482px;
+    border-radius: 10px;
+  }
+
+  .toRead-List {
+    right: 35px;
+  }
+
+  .booksList-toRead__list,
+  .booksList-favourites__list {
+    list-style: none;
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 375px;
+  }
+
+  .booksList__title {
+    font-size: 1.6em;
+    height: 26px;
+  }
+
+  .favourites__placeholder,
+  .toRead__placeholder {
+    font-size: 1.4em;
+    margin: 10px 0px;
+  }
+
+  .booksList-toRead__list,
+  .booksList-favourites__list {
+    max-height: 285px;
+  }
+
+  .booksList__preview__fig img {
+    width: 50px;
+    height: 70px;
+  }
+
+  .booksList__preview__title {
+    font-size: 1.4em;
+    line-height: 1.2em;
+  }
+
+  .booksList__preview__author {
+    font-size: 1.2em;
+  }
+}
