@@ -101,8 +101,10 @@
 .nav__glasses {
   height: 45px;
   width: auto;
-  filter: invert(65%) sepia(83%) saturate(6267%) hue-rotate(227deg)
-    brightness(100%) contrast(104%);
+  // filter: invert(65%) sepia(83%) saturate(6267%) hue-rotate(227deg)
+  //   brightness(100%) contrast(104%);
+  filter: invert(74%) sepia(12%) saturate(2451%) hue-rotate(89deg)
+    brightness(107%) contrast(80%);
   cursor: pointer;
   transition: all 0.2s;
 
