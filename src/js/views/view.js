@@ -171,7 +171,7 @@ export const displayUsersEmail = function (email) {
 export const renderSpinner = function () {
   const mockup = `
   <div class="spinner">
-     <img class="results-container__spinner" src="${spinner}" />
+     <img class="result-details__spinner" src="${spinner}" />
   </div>`;
 
   console.log('render spinner');
