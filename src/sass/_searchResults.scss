@@ -15,8 +15,8 @@
 
 .results-container__spinner {
   display: block;
-  // filter: invert(65%) sepia(83%) saturate(6267%) hue-rotate(227deg)
-  //   brightness(100%) contrast(104%);
+  filter: invert(65%) sepia(83%) saturate(6267%) hue-rotate(227deg)
+    brightness(100%) contrast(104%);
   margin: auto;
   height: 100px;
   animation: rotate 2s infinite linear;
