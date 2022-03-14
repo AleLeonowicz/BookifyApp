@@ -38,7 +38,7 @@
   width: 100%;
   color: $color-dark-blue;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   // margin-right: 40px;
 }
 
@@ -273,6 +273,10 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-medium) and (max-width: $bp-large) {
+  .bookshelf-text {
+    margin-bottom: 40px;
+  }
+
   .result-details__spinner {
     height: 80px;
   }
@@ -412,6 +416,10 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-small) and (max-width: $bp-medium) {
+  .bookshelf-text {
+    margin-bottom: 35px;
+  }
+
   .result-details__spinner {
     height: 60px;
   }
@@ -607,6 +615,10 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-smaller) and (max-width: $bp-small) {
+  .bookshelf-text {
+    margin-bottom: 20px;
+  }
+
   .result-details__spinner {
     height: 40px;
   }
@@ -805,6 +817,14 @@
 ///////////////////////////////////////////////////////////////////////
 
 @media screen and (min-width: $bp-extrasmall) and (max-width: $bp-smaller) {
+  .bookshelf-text {
+    margin-bottom: 12px;
+  }
+
+  .bookshelf-illu {
+    height: 240px;
+  }
+
   .bookshelf-text {
     font-size: 1.6em;
   }
