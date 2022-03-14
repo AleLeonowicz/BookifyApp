@@ -41,22 +41,15 @@ constants.form.addEventListener('submit', async function (e) {
 /////////////////////////////////////////////////////////////////////////////////////////
 
 constants.resultListContainer.addEventListener('click', async function (e) {
-  // console.log(e.target);
   const searchResult = e.target.closest('.search-result');
-  // console.log(searchResult);
   if (!searchResult) return;
 
   const link = searchResult.getAttribute('data-selfLink');
-  // console.log(link);
 
   const selectedResult = await helpers.getJSON(link);
-  // console.log(selectedResult);
 
   model.setState(selectedResult, 'selectedResult');
-  // console.log('model.state', model.state);
 
-  // view.clearContainer(constants.resultDetailsContainer);
-  // view.insertResultsDetails(model.state.selectedResult, model.state.favourites);
   view.reRenderResultContainer(
     constants.resultDetailsContainer,
     model.state.selectedResult,
@@ -126,12 +119,8 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
   if (user) {
     // User is signed in.
     console.log('logged in````', user);
-    model.setState(true, 'isLoggedIn');
-    model.setState(user._delegate.uid, 'userId');
-    model.setState([], 'favourites');
-    model.setState([], 'toRead');
-    model.setState([], 'toReadList');
-    model.setState([], 'favouritesList');
+    model.reconcileUserState(true, user._delegate.uid);
+    model.cleanState();
 
     helpers.setDisplayFlex([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayNone([constants.signUpBtn, constants.modal]);
@@ -139,16 +128,8 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     await model.getStateFromDb('favourites');
     await model.getStateFromDb('toRead');
 
-    const fetchBookListData = async function (fromList, toList) {
-      const data = await model.state[fromList].map(link =>
-        helpers.getJSON(link)
-      );
-      const result = await Promise.all(data);
-
-      model.setState(result, toList);
-    };
-    await fetchBookListData('toRead', 'toReadList');
-    await fetchBookListData('favourites', 'favouritesList');
+    await helpers.fetchBookListData('toRead', 'toReadList');
+    await helpers.fetchBookListData('favourites', 'favouritesList');
 
     model.state.toReadList.forEach(book =>
       bookListsView.insertBookList(book, constants.toReadList)
@@ -165,37 +146,17 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
       loginModalView.openModal
     );
 
-    constants.toReadBtn.addEventListener('click', function () {
-      window.getComputedStyle(constants.toReadContainer).opacity === '0'
-        ? (constants.toReadContainer.style.opacity = '1')
-        : (constants.toReadContainer.style.opacity = '0');
+    constants.toReadBtn.addEventListener('click', () =>
+      helpers.toggleStyles('toReadContainer', 'toReadList', 'toReadPlaceholder')
+    );
 
-      window.getComputedStyle(constants.toReadContainer)['z-index'] === '-1'
-        ? (constants.toReadContainer.style['z-index'] = '10')
-        : (constants.toReadContainer.style['z-index'] = '-1');
-
-      if (model.state.toReadList.length === 0) {
-        constants.toReadPlaceholder.style.display = 'flex';
-      } else {
-        constants.toReadPlaceholder.style.display = 'none';
-      }
-    });
-
-    constants.favouritesBtn.addEventListener('click', function () {
-      window.getComputedStyle(constants.favouritesContainer).opacity === '0'
-        ? (constants.favouritesContainer.style.opacity = '1')
-        : (constants.favouritesContainer.style.opacity = '0');
-
-      window.getComputedStyle(constants.favouritesContainer)['z-index'] === '-1'
-        ? (constants.favouritesContainer.style['z-index'] = '10')
-        : (constants.favouritesContainer.style['z-index'] = '-1');
-
-      if (model.state.favouritesList.length === 0) {
-        constants.favouritesPlaceholder.style.display = 'flex';
-      } else {
-        constants.favouritesPlaceholder.style.display = 'none';
-      }
-    });
+    constants.favouritesBtn.addEventListener('click', () =>
+      helpers.toggleStyles(
+        'favouritesContainer',
+        'favouritesList',
+        'favouritesPlaceholder'
+      )
+    );
 
     if (model.state.selectedResult)
       view.reRenderResultContainer(
@@ -206,12 +167,8 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
   } else {
     // User is not signed in.
     console.log('logged out````');
-    model.setState(false, 'isLoggedIn');
-    model.setState('', 'userId');
-    model.setState([], 'favourites');
-    model.setState([], 'toRead');
-    model.setState([], 'toReadList');
-    model.setState([], 'favouritesList');
+    model.reconcileUserState(false, '');
+    model.cleanState();
 
     helpers.setDisplayNone([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayFlex([constants.signUpBtn]);
@@ -254,3 +211,19 @@ window.addEventListener('click', e =>
 );
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+constants.favouritesList.addEventListener('click', async function (e) {
+  const book = e.target.closest('.booksList__preview');
+  if (!book) return;
+
+  const link = book.getAttribute('data-selfLink');
+  const selectedResult = await helpers.getJSON(link);
+
+  model.setState(selectedResult, 'selectedResult');
+
+  view.reRenderResultContainer(
+    constants.resultDetailsContainer,
+    model.state.selectedResult,
+    model.state
+  );
+});

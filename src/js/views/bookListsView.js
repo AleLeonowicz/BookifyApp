@@ -2,7 +2,7 @@ import * as constants from '../constants.js';
 
 export const insertBookList = function (book, container) {
   const mockup = `
-    <li class="booksList__preview">
+    <li class="booksList__preview" data-selfLink="${book.selfLink}">
       <a class="booksList__preview__link">
         <figure class="booksList__preview__fig">
           <img src="${book.volumeInfo.imageLinks.thumbnail}" alt="${book.volumeInfo.authors}">
