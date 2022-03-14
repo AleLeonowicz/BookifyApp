@@ -21,10 +21,13 @@ import 'regenerator-runtime/runtime';
 
 constants.form.addEventListener('submit', async function (e) {
   e.preventDefault();
+  const userInput = helpers.getQuery();
+  if (!userInput) return;
+
   view.clearContainer(constants.resultDetailsContainer);
   view.clearContainer(constants.resultListContainer);
   view.renderSpinner();
-  const userInput = helpers.getQuery();
+
   const data = await helpers.getJSON(
     `https://www.googleapis.com/books/v1/volumes?q=${userInput}&langRestrict=en&maxResults=40`
   );
