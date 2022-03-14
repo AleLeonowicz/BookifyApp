@@ -23,6 +23,7 @@ constants.form.addEventListener('submit', async function (e) {
   e.preventDefault();
   view.clearContainer(constants.resultDetailsContainer);
   view.clearContainer(constants.resultListContainer);
+  view.renderSpinner();
   const userInput = helpers.getQuery();
   const data = await helpers.getJSON(
     `https://www.googleapis.com/books/v1/volumes?q=${userInput}&langRestrict=en&maxResults=40`
@@ -32,6 +33,7 @@ constants.form.addEventListener('submit', async function (e) {
   // console.log('filteredData', filteredData);
   model.setState(filteredData, 'data');
 
+  view.clearContainer(constants.resultDetailsContainer);
   // console.log('model.state.data', model.state.data);
   model.state.data.forEach(item => {
     view.insertResult(item);
@@ -50,12 +52,16 @@ constants.form.addEventListener('submit', async function (e) {
 constants.resultListContainer.addEventListener('click', async function (e) {
   const searchResult = e.target.closest('.search-result');
   if (!searchResult) return;
+  view.clearContainer(constants.resultDetailsContainer);
+  view.renderSpinner();
 
   const link = searchResult.getAttribute('data-selfLink');
 
   const selectedResult = await helpers.getJSON(link);
 
   model.setState(selectedResult, 'selectedResult');
+
+  view.clearContainer(constants.resultDetailsContainer);
 
   view.reRenderResultContainer(
     constants.resultDetailsContainer,

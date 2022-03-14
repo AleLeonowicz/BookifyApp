@@ -4,7 +4,7 @@ import heart2 from 'url:../../img/heart2.png';
 import star1 from 'url:../../img/star1.png';
 import glasses1 from 'url:../../img/eyeglasses1.png';
 import glasses2 from 'url:../../img/eyeglasses2.png';
-import harrytest from 'url:../../img/hp-test.jpg';
+import spinner from 'url:../../img/spinner.svg';
 
 export const scrollIntoView = function (id) {
   document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
@@ -166,4 +166,15 @@ export const reRenderResultContainer = function (
 
 export const displayUsersEmail = function (email) {
   document.getElementById('usersEmail').innerHTML = `Hello, ${email} !`;
+};
+
+export const renderSpinner = function () {
+  const mockup = `
+  <div class="spinner">
+     <img class="results-container__spinner" src="${spinner}" />
+  </div>`;
+
+  console.log('render spinner');
+
+  constants.resultDetailsContainer.insertAdjacentHTML('afterbegin', mockup);
 };
