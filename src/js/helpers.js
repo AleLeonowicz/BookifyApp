@@ -4,6 +4,7 @@ import * as constants from './constants.js';
 export const getQuery = function () {
   const query = constants.searchField.value.replaceAll(' ', '+');
   constants.searchField.value = '';
+  console.log(query);
   return query;
 };
 

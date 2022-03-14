@@ -36,6 +36,13 @@ constants.form.addEventListener('submit', async function (e) {
   model.state.data.forEach(item => {
     view.insertResult(item);
   });
+
+  if ('URLSearchParams' in window) {
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('query', userInput);
+    const newRelativePathQuery = window.location.pathname + '?' + searchParams;
+    history.pushState(null, '', newRelativePathQuery);
+  }
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -57,6 +64,18 @@ constants.resultListContainer.addEventListener('click', async function (e) {
   );
 
   view.scrollIntoView('#nav');
+
+  /////
+
+  const bookID = link.split('https://www.googleapis.com/books/v1/volumes/')[1];
+  console.log(bookID);
+
+  if ('URLSearchParams' in window) {
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('bookID', bookID);
+    const newRelativePathQuery = window.location.pathname + '?' + searchParams;
+    history.pushState(null, '', newRelativePathQuery);
+  }
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -122,6 +141,7 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     model.reconcileUserState(true, user._delegate.uid);
     model.cleanState();
 
+    view.displayUsersEmail(user._delegate.email);
     helpers.setDisplayFlex([constants.usersEmail, constants.logOutBtn]);
     helpers.setDisplayNone([constants.signUpBtn, constants.modal]);
 
@@ -217,6 +237,57 @@ constants.favouritesList.addEventListener('click', async function (e) {
   if (!book) return;
 
   const link = book.getAttribute('data-selfLink');
+  const selectedResult = await helpers.getJSON(link);
+
+  model.setState(selectedResult, 'selectedResult');
+
+  view.reRenderResultContainer(
+    constants.resultDetailsContainer,
+    model.state.selectedResult,
+    model.state
+  );
+});
+
+constants.toReadList.addEventListener('click', async function (e) {
+  const book = e.target.closest('.booksList__preview');
+  if (!book) return;
+
+  const link = book.getAttribute('data-selfLink');
+  const selectedResult = await helpers.getJSON(link);
+
+  model.setState(selectedResult, 'selectedResult');
+
+  view.reRenderResultContainer(
+    constants.resultDetailsContainer,
+    model.state.selectedResult,
+    model.state
+  );
+});
+
+window.addEventListener('load', async function () {
+  const searchParams = new URLSearchParams(window.location.search);
+  const query = searchParams.get('query');
+  console.log(query);
+  if (!query) return;
+
+  const data = await helpers.getJSON(
+    `https://www.googleapis.com/books/v1/volumes?q=${query}&langRestrict=en&maxResults=40`
+  );
+
+  const filteredData = helpers.getFilteredData(data.items);
+  // console.log('filteredData', filteredData);
+  model.setState(filteredData, 'data');
+
+  // console.log('model.state.data', model.state.data);
+  model.state.data.forEach(item => {
+    view.insertResult(item);
+  });
+
+  const bookID = searchParams.get('bookID');
+  if (!bookID) return;
+
+  const link = `https://www.googleapis.com/books/v1/volumes/${bookID}`;
+
   const selectedResult = await helpers.getJSON(link);
 
   model.setState(selectedResult, 'selectedResult');

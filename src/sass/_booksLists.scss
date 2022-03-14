@@ -53,6 +53,7 @@
   transition: all 0.3s;
   text-decoration: none;
   border-radius: 10px;
+  cursor: pointer;
 
   &:hover {
     background-color: $color-light-brown;

@@ -163,3 +163,7 @@ export const reRenderResultContainer = function (
   clearContainer(container);
   insertResultsDetails(selectedResult, state);
 };
+
+export const displayUsersEmail = function (email) {
+  document.getElementById('usersEmail').innerHTML = `Hello, ${email} !`;
+};
