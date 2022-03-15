@@ -45,6 +45,7 @@ constants.form.addEventListener('submit', async function (e) {
     if ('URLSearchParams' in window) {
       const searchParams = new URLSearchParams(window.location.search);
       searchParams.set('query', userInput);
+      searchParams.delete('bookID');
       const newRelativePathQuery =
         window.location.pathname + '?' + searchParams;
       history.pushState(null, '', newRelativePathQuery);
