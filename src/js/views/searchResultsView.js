@@ -165,7 +165,7 @@ export const reRenderResultContainer = function (
 /////////////////////////////////////////////////////////////////////////////////////////
 
 export const insertPlaceholder = function () {
-  mockup = `
+  const mockup = `
   <div class="result-details__placeholder">
     <div class="placeholder__illu">
       <img class="bookshelf-illu" src="${bookshelf}" />
