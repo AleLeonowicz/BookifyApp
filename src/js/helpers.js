@@ -2,6 +2,9 @@ import * as model from './model.js';
 import * as constants from './constants.js';
 import * as view from './views/view.js';
 
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
 export const getQuery = function () {
   const query = constants.searchField.value.replaceAll(' ', '+');
   constants.searchField.value = '';
@@ -9,17 +12,20 @@ export const getQuery = function () {
   return query;
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 export const getJSON = async function (url) {
   const response = await fetch(url);
   const data = await response.json();
-  console.log('data', data);
   if (data.totalItems === 0) {
     view.clearContainer(constants.resultDetailsContainer);
-    renderErrorMsg();
+    view.renderErrorMsg();
     return;
   }
   return data;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 export const getFilteredData = function (data) {
   return data.filter(
@@ -36,13 +42,19 @@ export const getFilteredData = function (data) {
   );
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 export const setDisplayNone = function (arr) {
   arr.forEach(element => (element.style.display = 'none'));
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 export const setDisplayFlex = function (arr) {
   arr.forEach(element => (element.style.display = 'flex'));
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 export const fetchBookListData = async function (fromList, toList) {
   const data = await model.state[fromList].map(link => getJSON(link));
@@ -50,6 +62,8 @@ export const fetchBookListData = async function (fromList, toList) {
 
   model.setState(result, toList);
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 export const toggleStyles = function (container, list, placeholder) {
   window.getComputedStyle(constants[container]).opacity === '0'
@@ -67,15 +81,12 @@ export const toggleStyles = function (container, list, placeholder) {
   }
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 export const hidePlaceholder = function () {
   if (window.location.search !== '') {
     constants.mainPlaceholder.style.display = 'none';
   } else {
     constants.mainPlaceholder.style.display = 'flex';
   }
-};
-
-export const renderErrorMsg = function () {
-  mockup = `<div class="result-details__error-msg">Sorry, no books found for your search. Try again!</div>`;
-  constants.resultDetailsContainer.insertAdjacentHTML('afterbegin', mockup);
 };

@@ -3,20 +3,17 @@ import * as helpers from './helpers.js';
 import * as view from './views/view.js';
 import * as loginModalView from './views/loginModalView.js';
 import * as bookListsView from './views/bookListsView.js';
+import * as searchResultsView from './views/searchResultsView';
 import * as constants from './constants.js';
 import * as firebaseUtils from './firebase.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-/////
-
 // if (module.hot) {
 //   module.hot.accept();
 //
 
-//////////////////////////////////////////////
-//////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
 constants.form.addEventListener('submit', async function (e) {
@@ -41,7 +38,7 @@ constants.form.addEventListener('submit', async function (e) {
   view.clearContainer(constants.resultDetailsContainer);
   // console.log('model.state.data', model.state.data);
   model.state.data.forEach(item => {
-    view.insertResult(item);
+    searchResultsView.insertResult(item);
   });
 
   if ('URLSearchParams' in window) {
@@ -68,7 +65,7 @@ constants.resultListContainer.addEventListener('click', async function (e) {
 
   view.clearContainer(constants.resultDetailsContainer);
 
-  view.reRenderResultContainer(
+  searchResultsView.reRenderResultContainer(
     constants.resultDetailsContainer,
     model.state.selectedResult,
     model.state
@@ -79,7 +76,6 @@ constants.resultListContainer.addEventListener('click', async function (e) {
   /////
 
   const bookID = link.split('https://www.googleapis.com/books/v1/volumes/')[1];
-  console.log(bookID);
 
   if ('URLSearchParams' in window) {
     const searchParams = new URLSearchParams(window.location.search);
@@ -105,7 +101,7 @@ document
       ...model.state.favourites,
     ]);
 
-    view.reRenderResultContainer(
+    searchResultsView.reRenderResultContainer(
       constants.resultDetailsContainer,
       model.state.selectedResult,
       model.state
@@ -131,7 +127,7 @@ document
       ...model.state.toRead,
     ]);
 
-    view.reRenderResultContainer(
+    searchResultsView.reRenderResultContainer(
       constants.resultDetailsContainer,
       model.state.selectedResult,
       model.state
@@ -148,7 +144,7 @@ document
 firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
   if (user) {
     // User is signed in.
-    console.log('logged in````', user);
+    // console.log('logged in````', user);
     model.reconcileUserState(true, user._delegate.uid);
     model.cleanState();
 
@@ -190,14 +186,14 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     );
 
     if (model.state.selectedResult)
-      view.reRenderResultContainer(
+      searchResultsView.reRenderResultContainer(
         constants.resultDetailsContainer,
         model.state.selectedResult,
         model.state
       );
   } else {
     // User is not signed in.
-    console.log('logged out````');
+    // console.log('logged out````');
     model.reconcileUserState(false, '');
     model.cleanState();
 
@@ -212,7 +208,7 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
     view.clearContainer(constants.favouritesList);
 
     if (model.state.selectedResult)
-      view.reRenderResultContainer(
+      searchResultsView.reRenderResultContainer(
         constants.resultDetailsContainer,
         model.state.selectedResult,
         model.state
@@ -254,12 +250,14 @@ constants.favouritesList.addEventListener('click', async function (e) {
 
   model.setState(selectedResult, 'selectedResult');
 
-  view.reRenderResultContainer(
+  searchResultsView.reRenderResultContainer(
     constants.resultDetailsContainer,
     model.state.selectedResult,
     model.state
   );
 });
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 constants.toReadList.addEventListener('click', async function (e) {
   const book = e.target.closest('.booksList__preview');
@@ -270,17 +268,19 @@ constants.toReadList.addEventListener('click', async function (e) {
 
   model.setState(selectedResult, 'selectedResult');
 
-  view.reRenderResultContainer(
+  searchResultsView.reRenderResultContainer(
     constants.resultDetailsContainer,
     model.state.selectedResult,
     model.state
   );
 });
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 window.addEventListener('load', async function () {
   const searchParams = new URLSearchParams(window.location.search);
   const query = searchParams.get('query');
-  console.log(query);
+  // console.log(query);
   if (!query) return;
 
   const data = await helpers.getJSON(
@@ -293,7 +293,7 @@ window.addEventListener('load', async function () {
 
   // console.log('model.state.data', model.state.data);
   model.state.data.forEach(item => {
-    view.insertResult(item);
+    searchResultsView.insertResult(item);
   });
 
   const bookID = searchParams.get('bookID');
@@ -305,7 +305,7 @@ window.addEventListener('load', async function () {
 
   model.setState(selectedResult, 'selectedResult');
 
-  view.reRenderResultContainer(
+  searchResultsView.reRenderResultContainer(
     constants.resultDetailsContainer,
     model.state.selectedResult,
     model.state
