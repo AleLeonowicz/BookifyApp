@@ -230,6 +230,23 @@ firebaseUtils.firebaseApp.auth().onAuthStateChanged(async function (user) {
       helpers.setDisplayFlex([constants.signUpBtn]);
 
       firebaseUtils.initAuth();
+
+      constants.toReadBtn.removeEventListener('click', () =>
+        helpers.toggleStyles(
+          'toReadContainer',
+          'toReadList',
+          'toReadPlaceholder'
+        )
+      );
+
+      constants.favouritesBtn.removeEventListener('click', () =>
+        helpers.toggleStyles(
+          'favouritesContainer',
+          'favouritesList',
+          'favouritesPlaceholder'
+        )
+      );
+
       constants.toReadBtn.addEventListener('click', loginModalView.openModal);
       constants.favouritesBtn.addEventListener(
         'click',
