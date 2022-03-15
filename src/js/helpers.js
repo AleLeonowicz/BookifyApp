@@ -15,14 +15,18 @@ export const getQuery = function () {
 /////////////////////////////////////////////////////////////////////////////////////////
 
 export const getJSON = async function (url) {
-  const response = await fetch(url);
-  const data = await response.json();
-  if (data.totalItems === 0) {
-    view.clearContainer(constants.resultDetailsContainer);
-    view.renderErrorMsg();
-    return;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.totalItems === 0) {
+      view.clearContainer(constants.resultDetailsContainer);
+      view.renderErrorMsg();
+      return;
+    }
+    return data;
+  } catch (err) {
+    throw err;
   }
-  return data;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -57,10 +61,14 @@ export const setDisplayFlex = function (arr) {
 /////////////////////////////////////////////////////////////////////////////////////////
 
 export const fetchBookListData = async function (fromList, toList) {
-  const data = await model.state[fromList].map(link => getJSON(link));
-  const result = await Promise.all(data);
+  try {
+    const data = await model.state[fromList].map(link => getJSON(link));
+    const result = await Promise.all(data);
 
-  model.setState(result, toList);
+    model.setState(result, toList);
+  } catch (err) {
+    throw err;
+  }
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -83,6 +91,7 @@ export const toggleStyles = function (container, list, placeholder) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+//TODO: togglePlaceholder
 export const hidePlaceholder = function () {
   if (window.location.search !== '') {
     constants.mainPlaceholder.style.display = 'none';
