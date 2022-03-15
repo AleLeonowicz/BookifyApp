@@ -34,3 +34,6 @@ export const toReadPlaceholder = document.querySelector('.toRead__placeholder');
 export const favouritesPlaceholder = document.querySelector(
   '.favourites__placeholder'
 );
+export const mainPlaceholder = document.querySelector(
+  '.result-details__placeholder'
+);

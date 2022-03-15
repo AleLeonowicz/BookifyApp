@@ -32,6 +32,8 @@ constants.form.addEventListener('submit', async function (e) {
     `https://www.googleapis.com/books/v1/volumes?q=${userInput}&langRestrict=en&maxResults=40`
   );
 
+  if (!data) return;
+
   const filteredData = helpers.getFilteredData(data.items);
   // console.log('filteredData', filteredData);
   model.setState(filteredData, 'data');
@@ -238,6 +240,8 @@ window.addEventListener('click', e =>
     constants.favouritesBtn
   )
 );
+
+helpers.hidePlaceholder();
 
 /////////////////////////////////////////////////////////////////////////////////////////
 

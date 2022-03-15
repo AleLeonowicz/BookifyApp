@@ -13,12 +13,23 @@
   position: relative;
 }
 
+.result-details__error-msg {
+  display: flex;
+  font-size: 2em;
+  line-height: 1em;
+  font-family: 'Cardo';
+  width: 100%;
+  color: $color-dark-blue;
+  justify-content: center;
+}
+
 .result-details__placeholder {
   display: flex;
   align-items: center;
   margin: auto;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
   // border: 5px solid $color-beige;
   // border-radius: 15px;
   // width: 600px;
@@ -123,6 +134,7 @@
   width: 1200px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .result-details__img {

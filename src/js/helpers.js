@@ -1,16 +1,23 @@
 import * as model from './model.js';
 import * as constants from './constants.js';
+import * as view from './views/view.js';
 
 export const getQuery = function () {
   const query = constants.searchField.value.replaceAll(' ', '+');
   constants.searchField.value = '';
-  console.log(query);
+  // console.log(query);
   return query;
 };
 
 export const getJSON = async function (url) {
   const response = await fetch(url);
   const data = await response.json();
+  console.log('data', data);
+  if (data.totalItems === 0) {
+    view.clearContainer(constants.resultDetailsContainer);
+    renderErrorMsg();
+    return;
+  }
   return data;
 };
 
@@ -58,4 +65,17 @@ export const toggleStyles = function (container, list, placeholder) {
   } else {
     constants[placeholder].style.display = 'none';
   }
+};
+
+export const hidePlaceholder = function () {
+  if (window.location.search !== '') {
+    constants.mainPlaceholder.style.display = 'none';
+  } else {
+    constants.mainPlaceholder.style.display = 'flex';
+  }
+};
+
+export const renderErrorMsg = function () {
+  mockup = `<div class="result-details__error-msg">Sorry, no books found for your search. Try again!</div>`;
+  constants.resultDetailsContainer.insertAdjacentHTML('afterbegin', mockup);
 };
