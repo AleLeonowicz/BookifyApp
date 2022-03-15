@@ -91,6 +91,7 @@ export const toggleStyles = function (container, list, placeholder) {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+/*
 //TODO: togglePlaceholder
 export const hidePlaceholder = function () {
   if (window.location.search !== '') {
@@ -99,3 +100,5 @@ export const hidePlaceholder = function () {
     constants.mainPlaceholder.style.display = 'flex';
   }
 };
+
+*/

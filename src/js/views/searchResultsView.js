@@ -5,6 +5,7 @@ import heart2 from 'url:../../img/heart2.png';
 import star1 from 'url:../../img/star1.png';
 import glasses1 from 'url:../../img/eyeglasses1.png';
 import glasses2 from 'url:../../img/eyeglasses2.png';
+import bookshelf from 'url:../../img/undraw_Bookshelves3.png';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -159,4 +160,19 @@ export const reRenderResultContainer = function (
 ) {
   view.clearContainer(container);
   insertResultsDetails(selectedResult, state);
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+export const insertPlaceholder = function () {
+  mockup = `
+  <div class="result-details__placeholder">
+    <div class="placeholder__illu">
+      <img class="bookshelf-illu" src="${bookshelf}" />
+    </div>
+    <div class="placeholder__hr">
+      <hr class="bookshelf-hr">
+    </div>
+  </div>`;
+  constants.resultDetailsContainer.insertAdjacentHTML('afterbegin', mockup);
 };

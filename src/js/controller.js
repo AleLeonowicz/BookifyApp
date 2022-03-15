@@ -271,8 +271,6 @@ window.addEventListener('click', e =>
   )
 );
 
-helpers.hidePlaceholder();
-
 /////////////////////////////////////////////////////////////////////////////////////////
 
 constants.favouritesList.addEventListener('click', async function (e) {
@@ -322,6 +320,15 @@ constants.toReadList.addEventListener('click', async function (e) {
 window.addEventListener('load', async function () {
   try {
     const searchParams = new URLSearchParams(window.location.search);
+
+    if (window.location.search === '') {
+      searchResultsView.insertPlaceholder();
+    }
+
+    if (window.location.search !== '') {
+      view.renderSpinner();
+    }
+
     const query = searchParams.get('query');
     // console.log(query);
     if (!query) return;
@@ -334,6 +341,7 @@ window.addEventListener('load', async function () {
     // console.log('filteredData', filteredData);
     model.setState(filteredData, 'data');
 
+    view.clearContainer(constants.resultDetailsContainer);
     // console.log('model.state.data', model.state.data);
     model.state.data.forEach(item => {
       searchResultsView.insertResult(item);
