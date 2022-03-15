@@ -5,7 +5,7 @@ import heart2 from 'url:../../img/heart2.png';
 import star1 from 'url:../../img/star1.png';
 import glasses1 from 'url:../../img/eyeglasses1.png';
 import glasses2 from 'url:../../img/eyeglasses2.png';
-import bookshelf from 'url:../../img/undraw_Bookshelves3.png';
+import bookshelf from 'url:../../img/undraw_Bookshelves5.png';
 
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
