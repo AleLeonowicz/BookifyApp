@@ -88,17 +88,3 @@ export const toggleStyles = function (container, list, placeholder) {
     constants[placeholder].style.display = 'none';
   }
 };
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-/*
-//TODO: togglePlaceholder
-export const hidePlaceholder = function () {
-  if (window.location.search !== '') {
-    constants.mainPlaceholder.style.display = 'none';
-  } else {
-    constants.mainPlaceholder.style.display = 'flex';
-  }
-};
-
-*/
